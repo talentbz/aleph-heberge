@@ -1,0 +1,805 @@
+/* GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/* GLOBAL CSS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* overflow-x: hidden; */
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+
+    overflow-x: hidden;
+}
+
+@font-face {
+    font-family: 'Ultramagnetic';
+    src: url("../Ultramagnetic/Ultramagnetic\ Regular.ttf");
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+div#navbarSupportedContent {
+    justify-content: end;
+}
+
+.primary-menu li a {
+    color: #ffff;
+    font-family: 'Ultramagnetic';
+}
+
+.primary-menu li a img {
+    width: 60px;
+    margin: -16px 0px;
+}
+
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+    position: absolute;
+    background: black;
+}
+
+span.navbar-toggler-icon i {
+    color: white;
+}
+
+/* ---------------First section css start------------------ */
+header {
+    background-image: url(../img/Image\ 9_2x.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.banner-heading h1 {
+    color: #ffff;
+    font-family: 'Ultramagnetic';
+    font-size: 59px;
+    margin-top: 110px;
+}
+
+.banner-heading p {
+    color: #ffff;
+}
+
+.banner-img {
+    margin-top: 70px;
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 45px;
+}
+
+section.pricing {
+    padding-bottom: 100px;
+}
+
+/* ===============
+Service css start 
+========================*/
+.service-section {
+
+    padding: 100px 110px 0px 100px;
+}
+
+.service-heading {
+    font-size: 46px;
+    font-family: 'Ultramagnetic';
+    color: #333333;
+}
+
+.service-text {
+    margin: 21px -65px;
+}
+
+.service-list ul {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    margin-top: 50px;
+    flex-wrap: wrap;
+    padding-bottom: 100px;
+}
+
+.service-list ul li {
+    margin: 19px 14px;
+    text-align: center;
+    width: 173px;
+}
+
+.service-list ul li p {
+    font-size: 16px;
+    color: #1D46F6;
+    font-family: 'Ultramagnetic';
+    margin-top: 20px;
+}
+
+section.domain {
+    text-align: center;
+    padding: 70px;
+    background-image: url(../img/banner\ domain.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 330px;
+}
+
+.domain-first-heading {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-family: 'Roboto', Regular;
+    margin-bottom: 30px;
+    letter-spacing: 3px;
+}
+
+.domain-second-heading {
+    font-family: 'Roboto', Regular;
+    color: #ffff;
+    margin-bottom: 56px;
+    font-size: 30px;
+    font-family: 'Ultramagnetic';
+}
+
+.domain-form input {
+    padding: 12px 15px;
+    border: none;
+    border-radius: 5px;
+}
+
+.domain-form select {
+    padding: 13px 3px;
+    border: none;
+    border-radius: 3px;
+    width: 121px;
+    margin: 0px 10px;
+}
+
+.domain-form button {
+    width: 242px;
+    padding: 13px;
+    border: none;
+    background: #78C8ED;
+    color: #ffff;
+    border-radius: 3px;
+    font-family: 'Ultramagnetic';
+}
+
+
+/* ==========
+4th section
+================ */
+section.fourth-section {
+    padding: 115px 70px;
+}
+
+.section-info span {
+    color: #78C8ED;
+    font-family: 'Ultramagnetic';
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+
+}
+
+.section-info h1 {
+    font-size: 61px;
+    font-family: 'Ultramagnetic';
+
+}
+
+.section-info p {
+
+    margin-top: 15px;
+    line-height: 33px;
+    font-size: 20px;
+}
+
+
+/* ==================
+Footer
+======================== */
+
+footer {
+    background: url("../img/footer-banner.png");
+    padding: 94px 40px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+ul.social-icon li a img {
+    margin: 10px;
+}
+
+.footer-info {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 70px;
+    margin-left: -15px;
+}
+
+.footer-info:before {
+    content: "";
+    position: absolute;
+    width: 84%;
+    height: 1px;
+    background-color: #767474;
+    left: 7%;
+    bottom: -40px;
+}
+
+.footer-first-item {
+    margin: -22px -1px;
+    flex-basis: 25%;
+}
+
+
+.footer-item ul li a {
+    color: white;
+    font-size: 13px;
+    font-family: 'Roboto';
+    line-height: 30px;
+    text-decoration: none;
+}
+
+.footer-item ul li {
+    margin: 1px 0px;
+}
+
+.footer-logo a {
+    color: rgb(120, 200, 237);
+    margin: 0px -3px;
+    font-family: 'Ultramagnetic';
+    letter-spacing: 3px;
+    text-decoration: none;
+}
+
+.forth-first-item ul {
+    display: flex;
+}
+
+.footer-item ul li a img {
+    margin: 13px;
+}
+
+.copyright-text {
+    display: flex;
+    justify-content: space-around;
+}
+
+.third-first-item,
+.forth-first-item {
+    margin-top: 74px;
+    margin-left: 90px;
+}
+
+.footer-logo {
+    margin: 26px 0;
+}
+
+.copyright-text p {
+    font-size: 13px;
+    margin: 10px 63px;
+}
+
+/* ===============
+Second page
+================ */
+.second-header {
+    background-image: url(../img/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.primary-menu-2 li a {
+    color: #0A2449;
+    font-family: 'Ultramagnetic';
+}
+
+.primary-menu-2 li a img {
+    width: 60px;
+    margin: -16px 0px;
+}
+
+ul.card-list {
+    margin-top: 25px;
+}
+
+.banner-heading-2 h1 {
+    color: #4478C1;
+    font-family: 'Ultramagnetic';
+    font-size: 64px;
+    margin-top: 110px;
+}
+
+div#extra-bg {
+    background: white;
+}
+
+div#extra-margin {
+    margin-left: 14px;
+}
+
+/* ==============
+Third page csss
+================ */
+header.third-header {
+    background: #0C1B38;
+    border-bottom: 20px solid #78C8ED;
+}
+
+section.third-banner {
+    padding: 80px 0px;
+}
+
+.banner-info-inner.d-flex h1 {
+    font-family: 'Ultramagnetic';
+    margin: 36px 20px;
+    font-size: 46px;
+}
+
+.banner-img-3 img {
+    width: 140%;
+    margin: -77px;
+}
+
+
+.banner-info-text {
+    width: 407px;
+    margin-top: 34px;
+}
+
+.banner-info-list ul li a {
+    font-family: 'Ultramagnetic';
+    font-size: 20px;
+    line-height: 36px;
+    color: #009CDC;
+    text-decoration: none;
+}
+
+.pricing-table {
+    width: 354px;
+    background: #F3F6FA;
+    padding: 32px 30px;
+    margin-right: 64px;
+    position: relative;
+    margin: 45px 0px;
+}
+
+.pricing-btn {
+    position: absolute;
+    top: -30px;
+    z-index: -1;
+}
+
+.pricing-btn button {
+    border: none;
+    padding: 9px 10px;
+    color: white;
+    font-family: 'Ultramagnetic';
+    border-radius: 12px;
+}
+
+.pricing-table .card-heading {
+    font-size: 18px;
+    margin: 20px 0px;
+    font-family: 'Ultramagnetic';
+}
+
+.first-card .card-pricing h1 {
+    font-size: 39px;
+    font-family: 'Ultramagnetic';
+}
+
+.card-pricing {
+    background: #78C8ED;
+    padding: 12px 9px;
+    border-radius: 19px;
+    color: #333333;
+    font-size: 20px;
+}
+
+.pricing-table ul.card-list li {
+    font-size: 14px;
+    color: #33333380;
+    font-family: 'Roboto';
+    line-height: 29px;
+}
+
+button.card-botton {
+    border: none;
+    background: #78c8ed;
+    padding: 12px 108px;
+    color: white;
+    font-family: 'Ultramagnetic';
+    border-radius: 10px;
+    margin-top: 35px;
+}
+
+.card-pricing span {
+    font-size: 16px;
+}
+
+.testimonial-img img {
+    width: 60px;
+    margin: 25px;
+}
+
+.testimonial-inner {
+    align-items: center;
+}
+
+
+.testimonial-text h3 {
+    font-size: 16px;
+    color: #78C8ED;
+    font-family: 'Ultramagnetic';
+    letter-spacing: 3px;
+}
+
+.testimonial-text h1 {
+    font-size: 24px;
+    font-family: 'Ultramagnetic';
+}
+
+
+/* ==================
+4th
+================ */
+.banner-img-4 img {
+    width: 151%;
+
+    margin: -135px;
+}
+
+.banner-info-list {
+    margin-top: 100px;
+    width: 375px;
+}
+
+.banner-list ul li {
+    margin: 25px 0px;
+
+}
+
+.banner-info-list ul li {
+    line-height: 29px;
+}
+
+.banner-img-5 img {
+    width: 147%;
+    margin: -62px -188px;
+}
+
+
+/* ================
+6th
+=============== */
+.banner-img-6 img {
+    width: 120%;
+    margin: 15px -30px;
+}
+
+section.whois {
+    padding: 76px 0px 130px 10px;
+}
+
+.eleven-bannner-heading {
+    font-size: 25px;
+    font-family: 'Ultramagnetic';
+    margin: 34px 25px;
+}
+
+.banner-list ul li {
+    margin: 25px 0px;
+    font-size: 17px;
+    font-family: 'Roboto';
+    color: #333333;
+}
+
+.banner-img-7 img {
+    width: 134%;
+    margin: -68px -57px;
+}
+
+.banner-info-inner-9 h1 {
+    font-family: 'Ultramagnetic';
+    margin: 36px 20px;
+    font-size: 43px;
+}
+
+.banner-img-9 img {
+    width: 190%;
+    margin: -105px -190px;
+}
+
+.testimonial-9 {
+    margin-top: 108px;
+}
+
+
+/* ==============
+10th
+=================== */
+.banner-img-10 img {
+    width: 140%;
+    margin: -60px -121px;
+}
+
+.ten-benner-text {
+    width: 327px;
+    margin-top: 40px;
+}
+
+.nine-testimonial-img {
+    margin: 20px;
+}
+
+
+/* ================
+11th
+============= */
+.eleven-service-text {
+    display: flex;
+    padding: 70px 36px;
+}
+
+.eleven-service-list {
+    padding-bottom: 90px;
+}
+
+.eleven-service-list ul {
+    display: flex;
+    justify-content: center;
+
+}
+
+.eleven-service-list ul li {
+    margin: 13px 22px;
+    text-align: center;
+    width: 14%;
+}
+
+.eleven-service-list ul li img {
+    width: 73px;
+}
+
+.eleven-service-list ul li p {
+    font-size: 10px !important;
+    color: #1D46F6;
+    font-family: 'Ultramagnetic';
+    margin-top: 15px;
+}
+
+.eleven-service-text h1 {
+    font-size: 46px;
+    color: #04b4ff;
+    font-family: 'Ultramagnetic';
+}
+
+/* ===========
+14th
+============== */
+.code-inner {
+    background-image: linear-gradient(0deg, #f3f6fa, rgb(226 225 231 / 16%)), url(../img/image\ fond\ astuce@2x.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 50px 40px;
+    background-position: right;
+    border-radius: 50px;
+}
+
+h1.code-heading {
+    font-family: 'Ultramagnetic';
+    margin-bottom: 19px;
+    font-size: 36px;
+}
+
+/* ==============
+15th
+=============== */
+.fiftin-inner-section h1 {
+    font-size: 41px;
+    font-family: 'Ultramagnetic';
+    margin: 35px 20px;
+}
+
+.input-box {
+    margin-top: 54px;
+    background: #F3F6FA;
+    width: 450px;
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.input-box input {
+    border: none;
+    padding: 10px 10px;
+    margin: 12px 0;
+    font-family: 'Ultramagnetic';
+    width: 370px;
+    border-radius: 10px;
+}
+
+input.btn {
+    background: #78C8ED;
+    color: white;
+}
+
+.input-box-2 {
+    margin-top: 220px;
+    background: #F3F6FA;
+    width: 520px;
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.input-box-2 input {
+    border: none;
+    padding: 10px 10px;
+    margin: 12px 0;
+    font-family: 'Ultramagnetic';
+    width: 450px;
+    border-radius: 10px;
+}
+
+h2.input-heading-2 {
+    font-family: 'Ultramagnetic';
+}
+
+.fiftin-inner-text {
+    width: 318px;
+    margin-top: 25px;
+}
+
+h2.input-heading {
+    font-family: 'Ultramagnetic';
+}
+
+.main-select {
+    display: flex;
+    flex-direction: column;
+    width: 718px;
+    margin: auto;
+    background: #F3F6FA;
+    padding: 30px 38px;
+    border-radius: 10px;
+    line-height: 40px;
+}
+
+.main-select h3 {
+    font-family: 'Ultramagnetic';
+    font-size: 23px;
+    margin-bottom: 25px;
+}
+
+label {
+    font-family: 'Ultramagnetic';
+}
+
+.main-select select {
+    border: none;
+    padding: 15px 4px;
+    border-radius: 6px;
+    font-family: 'Ultramagnetic';
+    color: #78C8ED;
+}
+
+button#btn {
+    padding: 7px 16px;
+    text-align: left;
+    font-family: 'Ultramagnetic';
+    background: #78C8ED;
+    color: black;
+    font-size: 24px;
+    border-radius: 6px;
+    border: none;
+}
+
+.register-btn button {
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border: navajowhite;
+    padding: 17px 36px;
+    font-family: 'Ultramagnetic';
+    background: #0C1B38;
+    color: white;
+    border-radius: 7px;
+}
+
+
+/* ==============
+Last section
+================ */
+.message-box {
+    display: flex;
+    flex-direction: column;
+    width: 520px;
+    padding: 10px 35px;
+    background: #F3F6FA;
+    height: 80%;
+    margin: 0px 25px;
+}
+
+.message-box input {
+    border: none;
+    padding: 12px 15px;
+    border-radius: 6px;
+    margin: 13px 0px;
+    font-family: 'Ultramagnetic';
+}
+
+.message-box textarea {
+    border: none;
+    padding: 10px;
+    font-family: 'Ultramagnetic';
+}
+
+.message-box button {
+    padding: 9px 10px;
+    border: none;
+    background: #78C8ED;
+    font-family: 'Ultramagnetic';
+    color: white;
+    margin-top: 20px;
+}
+
+section.last-main-section {
+    padding: 80px 0 100px 0;
+}
+
+.last-first-part {
+    padding-bottom: 90px;
+}
+
+.last-inner-section h1 {
+    font-family: 'Ultramagnetic';
+    margin: 40px 20px;
+}
+
+.map {
+    margin-top: 50px;
+}
+
+.banner-img img {
+    width: 100%;
+}
+
+.testimonial {
+    margin-top: 100px;
+    width: 334px;
+}
+
+div#extra-color a {
+    color: white;
+}
+
+.dropdown-menu a:hover {
+    background-color: #009CDC;
+}
+
+.main-info {
+    margin-top: 30px;
+}
+
+.map img {
+    width: 100%;
+}
+
+#testimonial-marign {
+    margin-top: 145px;
+}

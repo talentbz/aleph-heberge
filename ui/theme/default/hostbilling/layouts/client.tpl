@@ -1,4 +1,4 @@
-{extends file="hostbilling/layouts/base.tpl"}
+{extends file="hostbilling/layouts/new_base/base.tpl"}
 {block name="content_body"}
 
 

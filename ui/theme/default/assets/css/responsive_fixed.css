@@ -1,0 +1,798 @@
+@media only screen and (max-width: 1024px),
+only screen and (max-device-width: 1024px) {
+  .message-box {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    padding: 10px 35px;
+    background: #F3F6FA;
+    height: 80%;
+    margin: 0px 25px;
+  }
+
+  a.nav-link {
+    font-size: 13px;
+  }
+
+  .banner-img-3 img {
+    width: 125%;
+    margin: -77px;
+  }
+
+  .info-img img {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 992px),
+only screen and (max-device-width: 992px) {
+
+  .eleven-service-list ul {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    flex-wrap: wrap;
+
+  }
+
+  .responsive {
+    width: 50% !important;
+  }
+
+  .banner-img-4 img {
+    width: 134%;
+    margin: -135px;
+  }
+
+  .banner-img-5 img {
+    width: 119%;
+    margin: -62px -188px;
+  }
+}
+
+@media only screen and (max-width: 912px),
+only screen and (max-device-width: 912px) {
+  .banner-img-3 img {
+    width: 116%;
+    margin: 0px;
+  }
+}
+
+@media only screen and (max-width: 820px),
+only screen and (max-device-width: 820px) {
+  .banner-img-3 img {
+    width: 119%;
+    margin: -77px;
+  }
+
+  .eleven-service-list ul {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 768px),
+only screen and (max-device-width: 768px) {
+  .banner-img-3 img {
+    width: 102%;
+  }
+
+  .responsive {
+    width: 53% !important;
+    margin: auto;
+  }
+
+  .forth-first-item {
+    margin-top: 74px;
+    margin-left: 0px;
+  }
+
+  .third-first-item,
+  .forth-first-item {
+    margin-top: 74px;
+    margin-left: 0px;
+  }
+
+  .banner-img-4 img {
+    width: 102% !important;
+    margin: 0 !important;
+  }
+
+  .banner-img-3 img {
+    width: 102%;
+    margin: 0 !important;
+  }
+
+  .banner-img-5 img {
+    width: 100%;
+    margin: 0;
+  }
+
+  .banner-img-6 img {
+    width: 104%;
+    margin: 0;
+  }
+
+  .banner-img-7 img {
+    width: 104%;
+    margin: 0;
+  }
+
+  .banner-img-9 img {
+    width: 102%;
+    margin: 0;
+  }
+
+  .banner-img-10 img {
+    width: 92%;
+    margin: 0;
+  }
+
+  .message-box {
+    display: flex;
+    flex-direction: column;
+    width: 471px;
+    padding: 10px 35px;
+    background: #F3F6FA;
+    height: 80%;
+    margin: 45px 25px;
+  }
+
+  .map img {
+    width: 80%;
+  }
+
+  .service-list ul li {
+    margin: 19px 14px;
+    text-align: center;
+    width: 155px;
+  }
+
+  .footer-info {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 70px;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .copyright-text {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin-top: 48px;
+  }
+}
+
+@media only screen and (max-width: 780px),
+only screen and (max-device-width: 780px) {
+  .banner-img-7 img {
+    width: 114%;
+    margin: -72px -56px;
+  }
+}
+
+@media only screen and (max-width: 730px),
+only screen and (max-device-width: 730px) {
+  .footer-info {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+
+}
+
+@media only screen and (max-width: 640px),
+only screen and (max-device-width: 640px) {
+  form.form-control {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  section.domain {
+    text-align: center;
+    padding: 25px;
+    background-image: url(../img/banner\ domain.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 330px;
+  }
+}
+
+@media only screen and (max-width: 512px),
+only screen and (max-device-width: 512px) {
+
+  .responsive {
+    width: 54%;
+    margin: auto;
+  }
+}
+
+@media only screen and (max-width: 425px),
+only screen and (max-device-width: 425px) {
+  .banner-heading-2 h1 {
+    color: #4478C1;
+    font-family: 'Ultramagnetic';
+    font-size: 43px;
+    margin-top: 110px;
+  }
+
+  #testimonial-marign {
+    margin-top: 0;
+  }
+
+  .testimonial-9 {
+    margin-top: 5px;
+  }
+
+  .service-text {
+    margin: 21px -1px;
+  }
+
+  .responsive {
+    width: 53% !important;
+    margin: 0;
+  }
+
+  .banner-img-7 img {
+    width: 114%;
+    margin: -3px -56px;
+  }
+
+  .eleven-service-list ul li p {
+    font-size: 13px !important;
+    color: #1D46F6;
+    font-family: 'Ultramagnetic';
+    margin-top: 15px;
+  }
+
+  .banner-heading h1 {
+    color: #ffff;
+    font-family: 'Ultramagnetic';
+    font-size: 40px;
+    margin-top: 110px;
+  }
+
+  .testimonial-inner {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .footer-info {
+    display: flex;
+    justify-content: center;
+  }
+
+  .input-box {
+    margin-top: 54px;
+    background: #F3F6FA;
+    width: 333px;
+    padding: 40px;
+    border-radius: 10px;
+  }
+
+  .input-box input {
+    border: none;
+    padding: 10px 10px;
+    margin: 12px 0;
+    font-family: 'Ultramagnetic';
+    width: 278px;
+    border-radius: 10px;
+  }
+
+  .input-box-2 {
+    margin-top: 54px;
+    background: #F3F6FA;
+    width: 350px;
+    padding: 40px;
+    border-radius: 10px;
+  }
+
+  .input-box-2 input {
+    border: none;
+    padding: 10px 10px;
+    margin: 12px 0;
+    font-family: 'Ultramagnetic';
+    width: 278px;
+    border-radius: 10px;
+  }
+
+  .fiftin-inner-section img {
+    width: 80px;
+  }
+
+  .main-select {
+    display: flex;
+    flex-direction: column;
+    width: 354px;
+    margin: auto;
+    background: #F3F6FA;
+    padding: 30px 38px;
+    border-radius: 10px;
+    line-height: 40px;
+  }
+
+  .about-img img {
+    width: 260px;
+  }
+
+  .footer-first-item {
+    margin: -65px 65px;
+  }
+
+  .domain-second-heading h1 {
+    font-family: 'Ultramagnetic';
+    font-size: 21px;
+  }
+
+  section.fourth-section {
+    padding: 115px 30px;
+  }
+
+  .service-section {
+    padding: 100px 9px 0px 16px;
+  }
+
+  .service-list ul li {
+    margin: 19px 14px;
+    text-align: center;
+    width: 138px;
+  }
+
+  .section-info h1 {
+    font-size: 31px;
+    font-family: 'Ultramagnetic';
+  }
+
+  .footer-first-item ul {
+    list-style: none;
+  }
+
+  footer {
+    background: url('../img/footer-banner.png');
+    padding: 94px 0px;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .eleven-service-list ul li {
+    margin: 13px 32px;
+    text-align: center;
+    width: 27%;
+  }
+
+  ul.social-icon {
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .footer-info {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .footer-first-item {
+    margin: 4px 18px;
+  }
+
+  .footer-first-item ul {
+    list-style: none;
+  }
+
+
+  .footer-item ul li a {
+    color: white;
+    font-size: 12px;
+    font-family: 'Roboto';
+  }
+
+  .footer-item ul li {
+    margin: 7px 19px;
+  }
+
+  .second-first-item {
+    margin: 34px 22px;
+  }
+
+  .third-first-item {
+    margin: -10px 25px;
+  }
+
+  .forth-first-item {
+    margin: 0px 12px;
+  }
+
+  .forth-first-item ul {
+    display: flex;
+  }
+
+  .footer-logo a {
+    color: #78C8ED;
+    margin: 0px 16px;
+  }
+
+  .footer-logo {
+    margin-bottom: 39px;
+    text-align: center;
+  }
+
+  .forth-first-item ul li a img {
+    width: 38px;
+  }
+
+  .copyright-text {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: 0px 0px;
+  }
+
+  .forth-first-item ul {
+    display: flex;
+    justify-content: center;
+  }
+
+  .copyright-text p {
+    font-family: 'Ultramagnetic';
+    line-height: 25px;
+    font-size: 10px;
+    text-align: center;
+  }
+
+  .eleven-bannaer-img img {
+    width: 80px;
+  }
+
+  .eleven-bannner-heading {
+    font-size: 25px;
+    font-family: 'Ultramagnetic';
+    margin: 15px 25px;
+  }
+
+  .domain-form select {
+    padding: 13px 3px;
+    border: none;
+    border-radius: 3px;
+    width: 215px;
+    margin: 14px 12px;
+  }
+
+  .domain-second-heading {
+    font-family: 'Roboto', Regular;
+    color: #ffff;
+    margin-bottom: 0px;
+    font-size: 16px;
+  }
+
+  .service-list {
+    padding: 0px 10px;
+  }
+
+  form.form-control {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  form.form-control select {
+    width: 333px;
+    margin-left: 1px;
+  }
+
+  form.form-control input {
+    margin: 19px 0px;
+  }
+
+  form.form-control button {
+    margin-top: 11px;
+  }
+
+  .domain-form button {
+    width: 216px;
+    padding: 13px;
+    border: none;
+    background: #78C8ED;
+    color: #ffff;
+    border-radius: 3px;
+    margin: -6px;
+    margin-top: -9px;
+  }
+
+  .banner-info-inner.d-flex h1 {
+    font-family: 'Ultramagnetic';
+    margin: 36px 20px;
+    font-size: 27px;
+  }
+
+  .banner-info-inner-9 h1 {
+    font-family: 'Ultramagnetic';
+    margin: 36px 20px;
+    font-size: 20px;
+  }
+
+  .banner-info-inner-9 img {
+    width: 91px;
+  }
+
+  section.domain {
+    text-align: center;
+    padding: 25px;
+    background-image: url(../img/banner\ domain.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 330px;
+  }
+
+  .message-box {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    padding: 10px 35px;
+    background: #F3F6FA;
+    height: 80%;
+    margin: 45px 25px;
+  }
+
+  .info-img img {
+    width: 85%;
+  }
+
+  .last-inner-section img {
+    width: 80px;
+  }
+}
+
+@media only screen and (max-width: 390px),
+only screen and (max-device-width: 390px) {
+  .service-text {
+    margin: 17px 0px;
+  }
+
+  .domain-form button {
+    width: 216px;
+    padding: 13px;
+    border: none;
+    background: #78C8ED;
+    color: #ffff;
+    border-radius: 3px;
+    margin: 19px;
+  }
+
+  .main-select {
+    display: flex;
+    flex-direction: column;
+    width: 352px !important;
+    margin: auto;
+    background: #F3F6FA;
+    padding: 30px 38px;
+    border-radius: 10px;
+    line-height: 40px;
+  }
+
+  .info-box {
+    text-align: center;
+  }
+
+  .main-select {
+    display: flex;
+    flex-direction: column;
+    width: 340px;
+    margin: auto;
+    background: #F3F6FA;
+    padding: 30px 38px;
+    border-radius: 10px;
+    line-height: 40px;
+  }
+}
+
+@media only screen and (max-width: 375px),
+only screen and (max-device-width: 375px) {
+  .banner-info-list {
+    margin-top: 100px;
+    width: 353px;
+  }
+
+  .service-list ul li img {
+    width: 120%;
+  }
+
+  .pricing-table {
+    width: 333px;
+    background: #F3F6FA;
+    padding: 32px 30px;
+    margin-right: 64px;
+    position: relative;
+    margin: 22px 0px;
+  }
+
+  .eleven-service-list ul li {
+    margin: 13px 41px;
+    text-align: center;
+    width: 28%;
+  }
+
+  .domain-second-heading h1 {
+    font-size: 20px;
+    font-family: 'Ultramagnetic';
+  }
+
+  .main-select {
+    display: flex;
+    flex-direction: column;
+    width: 310px;
+    margin: auto;
+    background: #F3F6FA;
+    padding: 30px 38px;
+    border-radius: 10px;
+    line-height: 40px;
+  }
+
+  .input-box {
+    margin-top: 54px;
+    background: #F3F6FA;
+    width: 325px;
+    padding: 40px;
+    border-radius: 10px;
+  }
+
+  .input-box-2 {
+    margin-top: 54px;
+    background: #F3F6FA;
+    width: 325px;
+    padding: 40px;
+    border-radius: 10px;
+  }
+
+  .message-box {
+    display: flex;
+    flex-direction: column;
+    width: 265px;
+    padding: 10px 35px;
+    background: #F3F6FA;
+    height: 80%;
+    margin: 45px 25px;
+  }
+
+  .service-list ul li {
+    margin: 24px 22px;
+    text-align: center;
+    width: 34%;
+  }
+
+  .service-text {
+    margin: 21px 2px;
+  }
+
+  .info-box {
+    text-align: center;
+  }
+
+}
+
+@media only screen and (max-width: 360px),
+only screen and (max-device-width: 360px) {
+  .banner-info-list {
+    margin-top: 100px;
+    width: 301px;
+  }
+}
+
+@media only screen and (max-width: 320px),
+only screen and (max-device-width: 320px) {
+  .pricing-table {
+    width: 296px;
+    background: #F3F6FA;
+    padding: 32px 30px;
+    margin-right: 64px;
+    position: relative;
+    margin: 22px 0px;
+  }
+
+  .input-box {
+    margin-top: 54px;
+    background: #F3F6FA;
+    width: 260px;
+    padding: 40px;
+    border-radius: 10px;
+  }
+
+  .input-box-2 {
+    margin-top: 54px;
+    background: #F3F6FA;
+    width: 280px;
+    padding: 40px;
+    border-radius: 10px;
+  }
+
+  .input-box-2 input {
+    border: none;
+    padding: 10px 10px;
+    margin: 12px 0;
+    font-family: 'Ultramagnetic';
+    width: 224px;
+    border-radius: 10px;
+  }
+
+  .input-box input {
+    border: none;
+    padding: 10px 10px;
+    margin: 12px 0;
+    font-family: 'Ultramagnetic';
+    width: 200px;
+    border-radius: 10px;
+  }
+
+  .banner-info-inner img {
+    width: 100px;
+  }
+
+  .banner-info-text {
+    width: 304px;
+    margin-top: 34px;
+  }
+
+  .banner-info-inner.d-flex h1 {
+    font-family: 'Ultramagnetic';
+    margin: 36px 20px;
+    font-size: 19px;
+  }
+
+  .banner-info-list {
+    margin-top: 100px;
+    width: 298px;
+  }
+
+  .main-select {
+    display: flex;
+    flex-direction: column;
+    width: 288px;
+    margin: auto;
+    background: #F3F6FA;
+    padding: 30px 38px;
+    border-radius: 10px;
+    line-height: 40px;
+  }
+
+  button.card-botton {
+    border: none;
+    background: #78c8ed;
+    padding: 13px 57px;
+    color: white;
+    font-family: 'Ultramagnetic';
+    border-radius: 10px;
+    margin-top: 35px;
+    margin-left: 25px;
+  }
+
+  .ten-benner-text {
+    width: 291px;
+    margin-top: 40px;
+  }
+
+  .eleven-service-list ul li {
+    margin: 13px 34px;
+    text-align: center;
+    width: 28%;
+  }
+
+  .fiftin-inner-text {
+    width: 290px;
+    margin-top: 25px;
+  }
+
+  .message-box {
+    display: flex;
+    flex-direction: column;
+    width: 265px;
+    padding: 10px 35px;
+    background: #F3F6FA;
+    height: 80%;
+    margin: 45px 25px;
+  }
+}
