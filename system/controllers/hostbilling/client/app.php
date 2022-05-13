@@ -8,9 +8,13 @@ require 'system/controllers/hostbilling/client/init.php';
 switch ($action) {
     case '':
     case 'home':
+        //add domain (Auth: Danila)
+        $domain_extensions = DomainPrice::all();
+
         \view(get_theme_file('home'), [
             'type' => 'client_auth',
             'admin' => User::admin(),
+            'domain_extensions' => $domain_extensions,
         ]);
 
         break;

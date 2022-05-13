@@ -1,4 +1,4 @@
-{extends file="hostbilling/layouts/client.tpl"}
+{extends file="hostbilling/layouts/new_base/base.tpl"}
 
 {block name="head"}
     <style>
@@ -19,8 +19,6 @@
             height: 56px;
             font-size: 20px;
             border-color: #EBEBEB;
-
-
         }
         .btn-domain-search{
             font-size: 20px;

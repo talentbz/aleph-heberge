@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-  <title>Aleph-Heberge</title>
+  <title>{$_title}</title>
   <meta charset="utf-8">
   <link rel="icon" href="{{APP_URL}}/storage/system/{get_or_default($config,'icon-32','icon-32x32.png')}" sizes="32x32" />
   <link rel="icon" href="{{APP_URL}}/storage/system/{get_or_default($config,'icon-192','icon-192x192.png')}" sizes="192x192" />
@@ -20,12 +20,39 @@
   <!-- main css -->
   <link rel="stylesheet" href="{{APP_URL}}/ui/theme/default/assets/css/style.css">
   <link rel="stylesheet" href="{{APP_URL}}/ui/theme/default/assets/css/responsive_fixed.css">
+
+  <!-- add old script -->
+  <script>
+    var base_url = '{$_url}';
+    var block_msg = '<div class="md-preloader text-center"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="32" width="32" viewbox="0 0 75 75"><circle cx="37.5" cy="37.5" r="33.5" stroke-width="6"/></svg></div>';
+  </script>
+  <script>
+      window.clx = {
+          base_url: '{$_url}',
+          i18n: {
+              yes: '{$_L['Yes']}',
+              no: '{$_L['No']}',
+              are_you_sure: '{$_L['are_you_sure']}'
+          },
+          theme_options: false,
+      };
+      var _L = [];
+      _L['Save'] = '{$_L['Save']}';
+      _L['Submit'] = '{$_L['Submit']}';
+      _L['Loading'] = '{$_L['Loading']}';
+      _L['OK'] = '{$_L['OK']}';
+      _L['Cancel'] = '{$_L['Cancel']}';
+      _L['Close'] = '{$_L['Close']}';
+      _L['are_you_sure'] = '{$_L['are_you_sure']}';
+      _L['Saved Successfully'] = '{$_L['Saved Successfully']}';
+      _L['Empty'] = '{$_L['Empty']}';
+  </script>
 </head>
 <body >
 <header>
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand" href="index.html"><img src="{{APP_URL}}/ui/theme/default/assets/img/logo footer.png" alt=""></a>
+      <a class="navbar-brand" href="{$_url}client/"><img src="{{APP_URL}}/ui/theme/default/assets/img/logo footer.png" alt=""></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"> <i class="fas fa-bars"></i></span>
     </button>
@@ -33,160 +60,55 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav primary-menu">
         <li class="nav-item active">
-          <a class="nav-link" href="index1.html">Accueil <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="{$_url}client/">Accueil <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="3rd.html">No services</a>
+          <a class="nav-link" href="#">Nos services</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="13th.html">Réservez votre domaine</a>
+          <a class="nav-link" href="{$_url}client/domain-register/">Réservez votre domaine</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="javscript:void(0)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             WHOIS
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="extra-color">
-            <a class="dropdown-item" href="12th.html">WHOIS</a>
+            <a class="dropdown-item" href="{$_url}client/whois/">WHOIS</a>
             <a class="dropdown-item" href="13th.html">VOTRE NOM DE DOMAINE</a>
             
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="14th.html">Astuces</a>
+          <a class="nav-link " href="{$_url}client/kb/">Astuces</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="18th.html">Contact</a>
+          <a class="nav-link " href="/contact">Contact</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             ESPACE CLIENT
           </a>
-          <div class="dropdown-menu"  aria-labelledby="navbarDropdown" id="extra-color"> 
-            <a class="dropdown-item" href="15th.html">ESPACE CLIENT</a>
-            <a class="dropdown-item" href="16th.html">ESPACE CLIENT-1</a>
-            <a class="dropdown-item" href="17th.html">ESPACE CLIENT-2</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="extra-color"> 
+            <a class="dropdown-item" href="{$_url}client/login/">ESPACE CLIENT</a>
+            <a class="dropdown-item" href="{$_url}client/login/">Login</a>
+            <a class="dropdown-item" href="{$_url}client/register/">Inscription</a>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="#"><img src="{{APP_URL}}/ui/theme/default/assets/img/icone LOGIN.png" alt=""></a>
+          <a class="nav-link " href="{$_url}client/login/"><img src="https://test.aleph-heberge.fr/ui/theme/default/assets/img/icone LOGIN.png" alt=""></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="#"><img style="width: 40px;" src="{{APP_URL}}/ui/theme/default/assets/img/icone_panier.svg" alt=""></a>
+          <a class="nav-link " href="#"><img style="width: 40px;" src="https://test.aleph-heberge.fr/ui/theme/default/assets/img/icone_panier.svg" alt=""></a>
         </li>
       </ul>
       
     </div>
     </div>
   </nav>
-
-  <section class="banner-part">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-5">
-          <div class="banner-heading">
-            <h1>La meilleure team à votre service</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          </div>
-        </div>
-        <div class="col-lg-7">
-          <div class="banner-img">
-            <img src="{{APP_URL}}/ui/theme/default/assets/img/Groupe_1.png" alt="">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  {block name="head"}{/block}
 </header>
 
-
-<section class="service-section" >
-  <div class="container">
-    <div class="row align-item-center">
-      <div class="col-lg-4">
-        <h1 class="service-heading">Nos services</h1>
-      </div>
-      <div class="col-lg-8">
-        <p class="service-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="service-list">
-        <ul>
-          <li>
-            <img src="{{APP_URL}}/ui/theme/default/assets/img/iconeVPS_SSD.png" alt="">
-            <p>VPS SSD</p>
-          </li>
-          <li><img src="{{APP_URL}}/ui/theme/default/assets/img/Ione_HEBERGEMENT.png" alt="">
-            <p>HÉBERGEMENT MUTUALISÉ</p></li>
-          <li><img src="{{APP_URL}}/ui/theme/default/assets/img/Icone-Infogerence.png" alt="">
-            <p>INFOGÉRANCE SERVEUR</p></li>
-          <li><img src="{{APP_URL}}/ui/theme/default/assets/img/Groupicone_serveur_dВdiВ_e 5.png" alt="">
-            <p>SERVEURS DÉDIÉS</p></li>
-          <li ><img src="{{APP_URL}}/ui/theme/default/assets/img/iconeVPS_SSD.png" alt="">
-            <p>VPS DISQUES HAUTES CAPACITÉS (SSD BOOST))</p></li>
-          <li>
-            <img src="{{APP_URL}}/ui/theme/default/assets/img/iocne maintenance.png" alt="">
-            <p>MAINTENCE</p>
-          </li>
-          <li ><img src="{{APP_URL}}/ui/theme/default/assets/img/icone bureau a distance.png" alt="">
-            <p>BUREAU WINDOWS VIRTUEL À DISTANCE</p></li>
-          <li><img src="{{APP_URL}}/ui/theme/default/assets/img/icone backup.png" alt="">
-            <p>BACKUP PLAN</p></li>
-            <li><img src="{{APP_URL}}/ui/theme/default/assets/img/icone vo ip.png" alt="">
-              <p>V0 IP</p></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="domain">
-  <div class="container">
-   <div class="row justify-content-center">
-    <div class="domain-text">
-      <div class="domain-first-heading text-center">
-        <p>ENREGISTRER VOTRE NOM DE DOMAINE</p>
-      </div>
-      <div class="domain-second-heading">
-        <h1>Enregistrez votre nom de domaine en 5 minutes</h1>
-      </div>
-    </div>
-    <div class="domain-form">
-      <form >
-        <input type="text" placeholder="Votre domaine">
-        <select>
-          <option value="0">.com</option>
-          <option value="1">.net</option>
-          <option value="2">.org</option>
-          <option value="2">.xyz</option>
-        </select>
-        <button>VÉRIFIER LA DISPONIBILITÉ</button>
-      </form>
-    </div>
-   </div>
-  </div>
-</section>
-
-<section class="fourth-section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="section-info">
-          <span>TEMOIGNAGES</span>
-          <h1>Ce qu’ils pensent de nos services</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco l</p>
-          <p><b>Paul Chart</b>  <span style="color: #33333380; margin-left: 20px ;">SUPCLIENT</span></p>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="about-img">
-          <img src="{{APP_URL}}/ui/theme/default/assets/img/image home.png" alt="">
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+{block name="content"}{/block}
 
 <footer>
   <div class="container">
@@ -274,5 +196,16 @@
 <script src="{{APP_URL}}/ui/theme/default/assets/js/popper.min.js"></script>
 <!-- main js -->
 <script src="{{APP_URL}}/ui/theme/default/assets/js/main.js"></script>
+<!-- add old script -->
+{if APP_STAGE == 'Dev'}
+    <script src="{{APP_URL}}/ui/theme/default/js/app.min.js?v={_raid()}"></script>
+    <script src="{{APP_URL}}/ui/lib/ray.js?v=3"></script>
+{else}
+    <script src="{{APP_URL}}/ui/theme/default/js/app.min.js"></script>
+{/if}
+{if isset($config['footer_scripts'])}
+    {$config['footer_scripts']}
+{/if}
+{block name="script"}{/block}
 </body>
 </html>
