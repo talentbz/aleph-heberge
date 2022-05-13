@@ -90,7 +90,7 @@
         </div>
         <div class="col-lg-7">
           <div class="banner-img">
-            <img src="img/Groupe 1.png" alt="">
+            <img src="{{APP_URL}}/ui/theme/default/assets/img/Groupe_1.png" alt="">
           </div>
         </div>
       </div>
