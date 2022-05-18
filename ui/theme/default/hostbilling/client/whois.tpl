@@ -1,4 +1,4 @@
-{extends file="hostbilling/layouts/client.tpl"}
+{extends file="hostbilling/layouts/new_base/base.tpl"}
 
 {block name="head"}
     <style>
@@ -35,7 +35,7 @@
     </style>
 {/block}
 
-{block name="content"}
+{block name="new_content"}
 
     <div class="container">
 

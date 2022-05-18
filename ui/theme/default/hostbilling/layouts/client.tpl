@@ -19,7 +19,7 @@
     </section>
 {/block}
 
-{block name="content"}
+{block name="new_content"}
     <section class="service-section" >
       <div class="container">
         <div class="row align-item-center">
@@ -41,7 +41,7 @@
                 <p>HÉBERGEMENT MUTUALISÉ</p></li>
               <li><img src="{{APP_URL}}/ui/theme/default/assets/img/Icone-Infogerence.png" alt="">
                 <p>INFOGÉRANCE SERVEUR</p></li>
-              <li><img src="{{APP_URL}}/ui/theme/default/assets/img/Groupicone_serveur_dВdiВ_e 5.png" alt="">
+              <li><img src="{{APP_URL}}/ui/theme/default/assets/img/Groupicone_serveur_dВdiВ_e5.png" alt="">
                 <p>SERVEURS DÉDIÉS</p></li>
               <li ><img src="{{APP_URL}}/ui/theme/default/assets/img/iconeVPS_SSD.png" alt="">
                 <p>VPS DISQUES HAUTES CAPACITÉS (SSD BOOST))</p></li>
@@ -87,7 +87,6 @@
        </div>
       </div>
     </section>
-
     <section class="fourth-section">
       <div class="container">
         <div class="row">

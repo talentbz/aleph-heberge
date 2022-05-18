@@ -803,3 +803,24 @@ div#extra-color a {
 #testimonial-marign {
     margin-top: 145px;
 }
+.custom-badge{
+    position: absolute;
+    display: inline-block;
+    background-color: #fd3995;
+    color: #fff;
+    box-shadow: 0 0 0 1px #fff;
+    cursor: default;
+    border: 1px solid transparent;
+    font-size: .625rem;
+    min-width: 1rem;
+    max-width: 1.6875rem;
+    padding: 0 3px;
+    border-radius: 1.25rem;
+    font-weight: 500;
+    line-height: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: middle;
+    top: 1.09375rem;
+}

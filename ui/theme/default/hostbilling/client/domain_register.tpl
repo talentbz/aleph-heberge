@@ -29,7 +29,7 @@
     </style>
 {/block}
 
-{block name="content"}
+{block name="new_content"}
 
 
     <div class="container">

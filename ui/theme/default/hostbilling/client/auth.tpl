@@ -17,7 +17,7 @@
 {/block}
 
 
-{block name="content"}
+{block name="new_content"}
     <div class="flex-1">
         <div class="container">
 

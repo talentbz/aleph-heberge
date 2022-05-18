@@ -1,8 +1,68 @@
-{extends file="hostbilling/layouts/client.tpl"}
+{extends file="hostbilling/layouts/new_base/base.tpl"}
+
+{block name="new_content"}
+    <style>
+          .clx-navigation-type-top .page-sidebar .primary-nav .nav-menu > li > ul li:hover > a {
+            color: #6969FF;
+        }
+        .header-icon:not(.btn)[data-toggle=dropdown][data-toggle=dropdown]:after {
+            background: #4c8ec4;
+        }
+
+        .card{
+            border-radius: 12px;
+            border: none;
+            box-shadow: 0 4px 24px 0 rgb(34 41 47 / 10%);
+        }
+        .clx-list-with-padding li{
+            position: relative;
+            padding: 8px 0 8px 25px;
+            font-size: 16px;
+        }
 
 
-{block name="content"}
+        .clx-pricing-table .pt-head:after {
+            content: "";
+            position: absolute;
+            top: -50px;
+            left: -20px;
+            right: -10px;
+            bottom: 0;
+            background: #4C3FB9;
+            z-index: -1;
+            transform: rotate(
+                    -7deg
+            );
+        }
+        .z-index-1 {
+            z-index: 1;
+        }
 
+        .clx-pricing-table.featured .pt-head:after {
+            background: #15db95;
+        }
+
+        label{
+            font-weight: bold;
+        }
+
+        .nav-menu li a>svg {
+            margin-right: .75rem;
+        }
+
+        .nav-menu li.active>a {
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+
+        .table.invoice-items{
+            border: 1px solid #dee2e6;
+        }
+
+        .table.invoice-items td, .table.invoice-items th {
+            border: 1px solid #dee2e6;
+        }
+    </style>
 
     <div class="container">
 

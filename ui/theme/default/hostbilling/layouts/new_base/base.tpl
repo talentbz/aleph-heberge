@@ -20,7 +20,6 @@
   <!-- main css -->
   <link rel="stylesheet" href="{{APP_URL}}/ui/theme/default/assets/css/style.css">
   <link rel="stylesheet" href="{{APP_URL}}/ui/theme/default/assets/css/responsive_fixed.css">
-
   <!-- add old script -->
   <script>
     var base_url = '{$_url}';
@@ -75,7 +74,6 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="extra-color">
             <a class="dropdown-item" href="{$_url}client/whois/">WHOIS</a>
             <a class="dropdown-item" href="13th.html">VOTRE NOM DE DOMAINE</a>
-            
           </div>
         </li>
         <li class="nav-item">
@@ -97,8 +95,14 @@
         <li class="nav-item">
           <a class="nav-link " href="{$_url}client/login/"><img src="https://test.aleph-heberge.fr/ui/theme/default/assets/img/icone LOGIN.png" alt=""></a>
         </li>
+        
         <li class="nav-item">
-          <a class="nav-link " href="#"><img style="width: 40px;" src="https://test.aleph-heberge.fr/ui/theme/default/assets/img/icone_panier.svg" alt=""></a>
+          {if $shopping_cart && $shopping_cart->items_count}
+          <a class="nav-link" href="{$base_url}client/checkout/">
+            <img style="width: 40px;" src="https://test.aleph-heberge.fr/ui/theme/default/assets/img/icone_panier.svg" alt="">
+            <span class="badge badge-icon custom-badge">{$shopping_cart->items_count}</span>
+          </a>
+          {/if}
         </li>
       </ul>
       
@@ -108,7 +112,7 @@
   {block name="head"}{/block}
 </header>
 
-{block name="content"}{/block}
+{block name="new_content"}{/block}
 
 <footer>
   <div class="container">
@@ -136,7 +140,7 @@
             </div>
             <div class="footer-item">
               <ul>
-                <li><a href="4th.html">VPS SSD</a></li>
+                <li><a href="{$_url}/client/items/vps/">VPS SSD</a></li>
                 <li><a href="5th.html"> HÉBERGEMENT MUTUALISÉ</a></li>
                 <li><a href="#">NFOGÉRANCE</a></li>
                 <li><a href="6th.html"> INFOGÉRANCE SERVEUR</a></li>
@@ -187,25 +191,27 @@
     </div>
   </div>
 </footer>
-
 <!-- jquery js -->
 <script src="{{APP_URL}}/ui/theme/default/assets/js/jquery-3.5.1.min.js"></script>
 <script src="{{APP_URL}}/ui/theme/default/assets/js/jquery.min.js"></script>
 <!-- bootstrap js -->
 <script src="{{APP_URL}}/ui/theme/default/assets/js/bootstrap.min.js"></script>
 <script src="{{APP_URL}}/ui/theme/default/assets/js/popper.min.js"></script>
+
 <!-- main js -->
 <script src="{{APP_URL}}/ui/theme/default/assets/js/main.js"></script>
+
 <!-- add old script -->
 {if APP_STAGE == 'Dev'}
     <script src="{{APP_URL}}/ui/theme/default/js/app.min.js?v={_raid()}"></script>
     <script src="{{APP_URL}}/ui/lib/ray.js?v=3"></script>
 {else}
-    <script src="{{APP_URL}}/ui/theme/default/js/app.min.js"></script>
+    <!-- <script src="{{APP_URL}}/ui/theme/default/js/app.min.js"></script> -->
 {/if}
 {if isset($config['footer_scripts'])}
     {$config['footer_scripts']}
 {/if}
+
 {block name="script"}{/block}
 </body>
 </html>
