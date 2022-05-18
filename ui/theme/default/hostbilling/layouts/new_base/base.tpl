@@ -112,8 +112,38 @@
   {block name="head"}{/block}
 </header>
 
-{block name="new_content"}{/block}
+  {block name="new_content"}{/block}
+<script>
+    'use strict';
 
+    var classHolder = document.getElementsByTagName("BODY")[0],
+        themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
+            { },
+        themeURL = themeSettings.themeURL || '',
+        themeOptions = themeSettings.themeOptions || '';
+    if (themeSettings.themeOptions)
+    {
+        classHolder.className = themeSettings.themeOptions;
+    }
+    else
+    {
+    }
+    var saveSettings = function()
+    {
+        themeSettings.themeOptions = String(classHolder.className).split(/[^\w-]+/).filter(function(item)
+        {
+            return /^(nav|header|footer|mod|display)-/i.test(item);
+        }).join(' ');
+        localStorage.setItem('themeSettings', JSON.stringify(themeSettings));
+    }
+    var resetSettings = function()
+    {
+        localStorage.setItem("themeSettings", "");
+    }
+
+</script>
+<input type="hidden" id="_url" name="_url" value="{$_url}">
+<input type="hidden" id="_df" name="_df" value="{$config['df']}">
 <footer>
   <div class="container">
     <div class="row justify-content-center">
@@ -140,11 +170,15 @@
             </div>
             <div class="footer-item">
               <ul>
-                <li><a href="{$_url}/client/items/vps/">VPS SSD</a></li>
-                <li><a href="5th.html"> HÉBERGEMENT MUTUALISÉ</a></li>
-                <li><a href="#">NFOGÉRANCE</a></li>
-                <li><a href="6th.html"> INFOGÉRANCE SERVEUR</a></li>
-                <li><a href="7th.html">VPS DISQUES HAUTES BACKUP CAPACITÉS (SSD BOOST)</a></li>
+                {if count($groups)}
+                  {foreach $groups as $group}
+                    <li><a href="{$base_url}client/items/{$group->slug}/">{$group->name}</a></li>
+                  {/foreach}
+                {/if}
+                <!-- <li><a href="{$_url}/client/items/vps/"> HÉBERGEMENT MUTUALISÉ</a></li>
+                <li><a href="{$_url}/client/items/vps/">NFOGÉRANCE</a></li>
+                <li><a href="{$_url}/client/items/vps/"> INFOGÉRANCE SERVEUR</a></li>
+                <li><a href="{$_url}/client/items/vps/">VPS DISQUES HAUTES BACKUP CAPACITÉS (SSD BOOST)</a></li> -->
               </ul>
        
             </div>
@@ -156,8 +190,8 @@
          
           <div class="footer-item">
             <ul>
-              <li><a href="8th.html">MAINTENANCE</a></li>
-              <li><a href="9th.html"> BUREAU WINDOWS VIRTUEL À DISTANCE</a></li>
+              <li><a href="{$_url}/client/items/vps/">MAINTENANCE</a></li>
+              <li><a href="{$_url}/client/items/vps/"> BUREAU WINDOWS VIRTUEL À DISTANCE</a></li>
               <li><a href="10th.html">BACKUP PLAN</a></li>
               <li><a href="11th.html">VO IP</a></li>
      
@@ -206,7 +240,7 @@
     <script src="{{APP_URL}}/ui/theme/default/js/app.min.js?v={_raid()}"></script>
     <script src="{{APP_URL}}/ui/lib/ray.js?v=3"></script>
 {else}
-    <!-- <script src="{{APP_URL}}/ui/theme/default/js/app.min.js"></script> -->
+    <script src="{{APP_URL}}/ui/theme/default/js/app.min.js"></script>
 {/if}
 {if isset($config['footer_scripts'])}
     {$config['footer_scripts']}
