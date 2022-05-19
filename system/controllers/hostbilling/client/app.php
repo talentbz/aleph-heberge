@@ -7,6 +7,11 @@ require 'system/controllers/hostbilling/client/init.php';
 
 switch ($action) {
     case '':
+    case 'contact-us':
+        \view(get_theme_file('contact_us'), [
+        ]);
+
+        break;
     case 'home':
         //add domain (Auth: Danila)
         $domain_extensions = DomainPrice::all();

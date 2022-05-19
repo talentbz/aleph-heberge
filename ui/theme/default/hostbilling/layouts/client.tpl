@@ -1,5 +1,10 @@
 {extends file="hostbilling/layouts/new_base/base.tpl"}
 {block name="head"}
+  <style>
+    #domain_search_result {
+      z-index: 999;
+    }
+  </style>
     <section class="banner-part">
         <div class="container">
           <div class="row">
@@ -74,7 +79,7 @@
           </div>
         </div>
         <div class="domain-form">
-          <form >
+          <!-- <form >
             <input type="text" placeholder="Votre domaine">
             <select>
                 {foreach $domain_extensions as $domain_extension}
@@ -82,7 +87,22 @@
                 {/foreach}
             </select>
             <button>VÉRIFIER LA DISPONIBILITÉ</button>
+          </form> -->
+
+          <form id="form_domain_search">
+              <input type="text" class="input-domain-search" name="domain_name" placeholder="{$_L['Enter domain name...']}">
+              <select class="input-domain-search-extension" name="extension">
+                  {foreach $domain_extensions as $domain_extension}
+                      <option value="{$domain_extension->extension}">{$domain_extension->extension}</option>
+                  {/foreach}
+              </select>
+              <button id="btn_domain_submit" type="submit">VÉRIFIER LA DISPONIBILITÉ</button>
           </form>
+          <div class="row mt-3">
+            <div class="col-md-12" id="domain_search_result" style="display: none;">
+
+            </div>
+        </div>
         </div>
        </div>
       </div>
@@ -106,4 +126,42 @@
         </div>
       </div>
     </section>
+{/block}
+
+{block name=custom_script}
+
+    <script>
+
+        $(function () {
+
+            let $form_domain_search = $('#form_domain_search');
+            let $domain_search_result = $('#domain_search_result');
+            let $btn_domain_submit = $('#btn_domain_submit');
+            let $cloudonex_body = $('#cloudonex_body');
+            $form_domain_search.on('submit',function (event) {
+                event.preventDefault();
+                $btn_domain_submit.prop('disabled',true);
+                axios.post(base_url + 'client/domain-register-post',$form_domain_search.serialize()).then(function (response) {
+                    $btn_domain_submit.prop('disabled',false);
+                    $domain_search_result.show();
+                    $domain_search_result.html('<div class="card"><div class="card-body">' + response.data + '</div></div>');
+                }).catch(function (error) {
+
+                    $btn_domain_submit.prop('disabled',false);
+
+                    $.each(error.response.data, function(key, value) {
+                        toastr.error(value);
+                    });
+
+                });
+
+            });
+
+
+
+        });
+
+    </script>
+
+
 {/block}

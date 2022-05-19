@@ -61,8 +61,17 @@
         <li class="nav-item active">
           <a class="nav-link" href="{$_url}client/">Accueil <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Nos services</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Nos services
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="extra-color"> 
+            {if count($groups)}
+              {foreach $groups as $group}
+                <a class="dropdown-item" href="{$base_url}client/items/{$group->slug}/">{$group->name}</a>
+              {/foreach}
+            {/if}
+          </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{$_url}client/domain-register/">Réservez votre domaine</a>
@@ -80,7 +89,7 @@
           <a class="nav-link " href="{$_url}client/kb/">Astuces</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="/contact">Contact</a>
+          <a class="nav-link " href="{$_url}client/contact-us">Contact</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -105,7 +114,7 @@
           {/if}
         </li>
       </ul>
-      
+
     </div>
     </div>
   </nav>
@@ -227,7 +236,7 @@
 </footer>
 <!-- jquery js -->
 <script src="{{APP_URL}}/ui/theme/default/assets/js/jquery-3.5.1.min.js"></script>
-<script src="{{APP_URL}}/ui/theme/default/assets/js/jquery.min.js"></script>
+<!-- <script src="{{APP_URL}}/ui/theme/default/assets/js/jquery.min.js"></script> -->
 <!-- bootstrap js -->
 <script src="{{APP_URL}}/ui/theme/default/assets/js/bootstrap.min.js"></script>
 <script src="{{APP_URL}}/ui/theme/default/assets/js/popper.min.js"></script>
@@ -247,5 +256,6 @@
 {/if}
 
 {block name="script"}{/block}
+{block name="custom_script"}{/block}
 </body>
 </html>

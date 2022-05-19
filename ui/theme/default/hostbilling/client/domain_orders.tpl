@@ -1,6 +1,9 @@
-{extends file="hostbilling/layouts/client.tpl"}
-
-{block name="content"}
+{extends file="hostbilling/layouts/new_base/base.tpl"}
+{block name="head"}
+    <link id="css_app" rel="stylesheet" media="screen, print" href="{{APP_URL}}/ui/theme/default/css/app.min.css?v={{_raid()}}">
+{/block}
+{block name="new_content"}
+<main id="clx-page-content" role="main" class="page-content">
 
     <div class="subheader">
         <h2 class="subheader-title">
@@ -91,7 +94,7 @@
     </div>
 
 
-
+</main>
 {/block}
 
 {block name=script}

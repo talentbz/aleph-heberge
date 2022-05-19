@@ -1,7 +1,8 @@
-{extends file="$layouts_client"}
+{extends file="hostbilling/layouts/new_base/base.tpl"}
+
 {block name="head"}
 
-
+    <link id="css_app" rel="stylesheet" media="screen, print" href="{{APP_URL}}/ui/theme/default/css/app.min.css?v={{_raid()}}">
     <style>
         .table-striped tbody tr:nth-of-type(odd) {
             background-color: #F7F9FC;
@@ -36,8 +37,8 @@
 {/block}
 
 
-{block name="content"}
-
+{block name="new_content"}
+<main id="clx-page-content" role="main" class="page-content">
     <div class="panel">
         <div class="panel-hdr">
             <h2 class="h2">{$_L['Total']} : {$total_quotes}</h2>
@@ -100,5 +101,5 @@
         </div>
 
     </div>
-
+</main>
 {/block}

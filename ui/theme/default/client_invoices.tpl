@@ -1,7 +1,7 @@
-{extends file="$layouts_client"}
+{extends file="hostbilling/layouts/new_base/base.tpl"}
 
 {block name="head"}
-
+<link id="css_app" rel="stylesheet" media="screen, print" href="{{APP_URL}}/ui/theme/default/css/app.min.css?v={{_raid()}}">
 
     <style>
         .table-striped tbody tr:nth-of-type(odd) {
@@ -37,8 +37,8 @@
 {/block}
 
 
-{block name="content"}
-
+{block name="new_content"}
+<main id="clx-page-content" role="main" class="page-content">
     <div class="row">
 
         <div class="col-md-12">
@@ -191,7 +191,7 @@
 
     </div>
 
-
+</main>
 {/block}
 
 {block name="script"}
