@@ -127,11 +127,11 @@
 
             let $main_form = $('#main_form');
 
-            $('#header_content').redactor(
-                {
-                    minHeight: 200 // pixels
-                }
-            );
+            // $('#header_content').redactor(
+            //     {
+            //         minHeight: 200 // pixels
+            //     }
+            // );
 
             $('#body_content').redactor(
                 {
