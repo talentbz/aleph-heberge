@@ -1,7 +1,7 @@
 {extends file="hostbilling/layouts/new_base/base.tpl"}
 
 {block name="new_content"}
-    <style>
+    <!-- <style>
           .clx-navigation-type-top .page-sidebar .primary-nav .nav-menu > li > ul li:hover > a {
             color: #6969FF;
         }
@@ -62,9 +62,9 @@
         .table.invoice-items td, .table.invoice-items th {
             border: 1px solid #dee2e6;
         }
-    </style>
+    </style> -->
 
-    <div class="container">
+    <!-- <div class="container">
 
 
         {if $group && $group->header_content}
@@ -150,9 +150,118 @@
 
         </div>
 
-    </div>
+    </div> -->
 
+    <section class="third-banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="banner-info">
+                        <div class="banner-info-inner d-flex">
+                        <img src="img/iconeVPS SSD.png" alt="">
+                        <h1>VPS SSD</h1>
+                        </div>
+                        <div class="banner-info-text">
+                        <p>Un contrôle total et un prix selon votre budget et évolutif. <br> L’essentiel pour démarrer <br>
+                            Serveurs en
+                            France. <br> Support en France.</p>
+                        </div>
+                        <div class="banner-info-list">
+                        <ul>
+                            <li><a href="#">• Trafic illimité </a></li>
+                            <li><a href="#">• Cœurs CPU, RAM, Disque 100% dédiés </a></li>
+                            <li><a href="#">• ans engagement, prêt à l’emploi</a></li>
+                            <li><a href="#">• Distribution a la demande.</a></li>
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="banner-img-4">
+                        <img src="img/image VPS SSD.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section class="pricing">
+        <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+            <div class="pricing-table">
+                <div class="pricing-btn">
+                <button style="background-color: #78C8ED;">MENSUEL</button>
+                <button style="background-color: #833D8F;">ANNUEL</button>
+                </div>
+                <div class="first-card">
+                <h3 class="card-heading">VPS M SSD</h3>
+                <div class="card-pricing">
+                    <h1>19,00<span style="font-size: 43px; font-weight: 600;">€</span> <span>/ mois</span></h1>
+                </div>
+                <ul class="card-list">
+                    <li>• 4 cœur Intel a 2.6Giga hertz </li>
+                    <li>• 8 Giga de RAM </li>
+                    <li>• 300 Giga d’espace disque SSD </li>
+                    <li>•Trafic illimité </li>
+
+                </ul>
+                <button class="card-botton">JE RESERVE</button>
+                </div>
+            </div>
+            </div>
+            <div class="col-lg-4">
+
+            <div class="pricing-table">
+                <div class="pricing-btn">
+                <button style="background-color: #78C8ED;">MENSUEL</button>
+                <button style="background-color: #833D8F;">ANNUEL</button>
+                </div>
+                <div class="first-card">
+                <h3 class="card-heading">VPS L 100% SSD</h3>
+                <div class="card-pricing">
+                    <h1>40,00<span style="font-size: 43px; font-weight: 600;">€</span> <span>/ mois</span></h1>
+                </div>
+                <ul class="card-list">
+                    <ul class="card-list">
+                    <li>• 8 coeurs Intel </li>
+                    <li> • 16 Giga de RAM </li>
+                    <li>• 800 Giga d’espace disque SSD </li>
+                    <li>• • Trafic illimité </li>
+
+                    </ul>
+                </ul>
+                <button class="card-botton">JE RESERVE</button>
+                </div>
+
+            </div>
+            </div>
+            <div class="col-lg-4">
+            <div class="pricing-table">
+                <div class="pricing-btn">
+                <button style="background-color: #78C8ED;">MENSUEL</button>
+                <button style="background-color: #833D8F;">ANNUEL</button>
+                </div>
+                <div class="first-card">
+                <h3 class="card-heading">VPS XL 100% SSD</h3>
+                <div class="card-pricing">
+                    <h1>60,00<span style="font-size: 43px; font-weight: 600;">€</span> <span>/ mois</span></h1>
+                </div>
+                <ul class="card-list">
+                    <li>• Equipée de 10 cœur Intel </li>
+                    <li> • 40 Giga de RAM </li>
+                    <li>• 800 Giga d’espace disque SSD </li>
+                    <li>• • Trafic illimité </li>
+
+                </ul>
+                <button class="card-botton">JE RESERVE</button>
+                </div>
+
+            </div>
+            </div>
+        </div>
+        </div>
+    </section>
 
 
 {/block}
