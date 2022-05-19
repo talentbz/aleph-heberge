@@ -1,8 +1,7 @@
-{extends file="hostbilling/layouts/client.tpl"}
+{extends file="hostbilling/layouts/new_base/base.tpl"}
 
-
-{block name="content"}
-
+{block name="new_content"}
+<main id="clx-page-content" role="main" class="page-content">
 
 
     <div class="mx-auto" style="width: 800px">
@@ -27,6 +26,6 @@
 
     </div>
 
-
+</main>
 {/block}
 
