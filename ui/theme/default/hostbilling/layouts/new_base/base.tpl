@@ -52,7 +52,7 @@
 <header>
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand" href="{$_url}client/"><img src="{{APP_URL}}/ui/theme/default/assets/img/logo footer.png" alt=""></a>
+      <a class="navbar-brand" href="{$_url}client/home"><img src="{{APP_URL}}/ui/theme/default/assets/img/logo footer.png" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"> <i class="fas fa-bars"></i></span>
       </button>
@@ -63,7 +63,7 @@
             {if !empty($user)}
               <a class="nav-link" href="{$_url}client/dashboard">Accueil <span class="sr-only">(current)</span></a>
             {else}
-              <a class="nav-link" href="{$_url}client">Accueil <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{$_url}client/home">Accueil <span class="sr-only">(current)</span></a>
             {/if}
           </li>
           <li class="nav-item dropdown">
