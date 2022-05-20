@@ -28,25 +28,25 @@
                                 <h3 class="card-heading">{$item->name}</h3>
                                 <div class="card-pricing">
                                     {if $item->one_time_fee && $item->one_time_fee > 0}
-                                        <h1 class="selected_price">{formatCurrency(($item->one_time_fee),$config['home_currency'])}<span class="selected_date">/ {$_L['One Time']}</span></h1>
+                                        <h1 class="selected_price">{formatCurrency(($item->one_time_fee),$config['home_currency'])}<span>/ {$_L['One Time']}</span></h1>
                                     
                                     {elseif $item->price_monthly && $item->price_monthly > 0}
-                                        <h1 class="selected_price">{formatCurrency(($item->price_monthly),$config['home_currency'])}<span class="selected_date">/ {$_L['Monthly']}</span></h1>
+                                        <h1 class="selected_price">{formatCurrency(($item->price_monthly),$config['home_currency'])}<span>/ {$_L['Monthly']}</span></h1>
                                     
                                     {elseif $item->price_yearly && $item->price_yearly > 0}
-                                        <h1 class="selected_price">{formatCurrency(($item->price_yearly),$config['home_currency'])}<span class="selected_date">/ {$_L['Yearly']}</span></h1>
+                                        <h1 class="selected_price">{formatCurrency(($item->price_yearly),$config['home_currency'])}<span>/ {$_L['Yearly']}</span></h1>
                                     
                                     {elseif $item->price_quarterly && $item->price_quarterly > 0}
-                                        <h1 class="selected_price">{formatCurrency(($item->price_quarterly),$config['home_currency'])}<span class="selected_date">/ {$_L['Quarterly']}</span></h1>
+                                        <h1 class="selected_price">{formatCurrency(($item->price_quarterly),$config['home_currency'])}<span>/ {$_L['Quarterly']}</span></h1>
                                         
                                     {elseif $item->price_half_yearly && $item->price_half_yearly > 0}
-                                        <h1 class="selected_price">{formatCurrency(($item->price_half_yearly),$config['home_currency'])}<span class="selected_date">/ {$_L['Half Yearly']}</span></h1>
+                                        <h1 class="selected_price">{formatCurrency(($item->price_half_yearly),$config['home_currency'])}<span>/ {$_L['Half Yearly']}</span></h1>
 
                                     {elseif $item->two_years && $item->two_years > 0}
-                                        <h1 class="selected_price">{formatCurrency(($item->two_years),$config['home_currency'])}<span class="selected_date">/ {$_L['Two Years']}</span></h1>
+                                        <h1 class="selected_price">{formatCurrency(($item->two_years),$config['home_currency'])}<span>/ {$_L['Two Years']}</span></h1>
                                     
                                     {elseif $item->price_three_years && $item->price_three_years > 0}
-                                        <h1 class="selected_price">{formatCurrency(($item->price_three_years),$config['home_currency'])}<span class="selected_date">/ {$_L['Three Years']}</span></h1>
+                                        <h1 class="selected_price">{formatCurrency(($item->price_three_years),$config['home_currency'])}<span>/ {$_L['Three Years']}</span></h1>
                                     
                                     {/if}
                                 </div>
@@ -153,19 +153,18 @@
         $(function () {
             $('.monthly, .annual').on('click', function(){
                 let that = $(this);
-                console.log('/ ' + that.data('date'));
                 that.closest('.pricing_block').find('.selected_price').html(that.data('price') + '<span>/ ' +  that.data('date') + '</span>');
                 that.closest('.pricing_block').find('.btn_buy_now').attr('href',base_url + 'client/buy-now/' + that.data('slug') + '/' + that.data('term'));
             })
 
-            $('.select_payment_term').on('change',function () {
-                let that = $(this);
+            // $('.select_payment_term').on('change',function () {
+            //     let that = $(this);
 
-                that.closest('.pricing_block').find('.selected_price').html(that.find(':selected').data('price'));
-                that.closest('.pricing_block').find('.selected_term').html(that.find(':selected').data('term'));
-                that.closest('.pricing_block').find('.btn_buy_now').attr('href',base_url + 'client/buy-now/' + that.data('slug') + '/' + that.find(':selected').data('term'));
+            //     that.closest('.pricing_block').find('.selected_price').html(that.find(':selected').data('price'));
+            //     that.closest('.pricing_block').find('.selected_term').html(that.find(':selected').data('term'));
+            //     that.closest('.pricing_block').find('.btn_buy_now').attr('href',base_url + 'client/buy-now/' + that.data('slug') + '/' + that.find(':selected').data('term'));
 
-            });
+            // });
         });
 
     </script>

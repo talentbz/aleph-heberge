@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="{{APP_URL}}/ui/theme/default/assets/css/style.css">
   <link rel="stylesheet" href="{{APP_URL}}/ui/theme/default/assets/css/responsive_fixed.css">
   <!-- add old script -->
-  <!-- <link id="css_app" rel="stylesheet" media="screen, print" href="{{APP_URL}}/ui/theme/default/css/app.css"> -->
+  <link id="css_app" rel="stylesheet" media="screen, print" href="{{APP_URL}}/ui/theme/default/css/app.css">
   <script>
     var base_url = '{$_url}';
     var block_msg = '<div class="md-preloader text-center"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="32" width="32" viewbox="0 0 75 75"><circle cx="37.5" cy="37.5" r="33.5" stroke-width="6"/></svg></div>';
@@ -60,7 +60,11 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav primary-menu">
           <li class="nav-item active">
-            <a class="nav-link" href="{$_url}client/">Accueil <span class="sr-only">(current)</span></a>
+            {if !empty($user)}
+              <a class="nav-link" href="{$_url}client/dashboard/">Accueil <span class="sr-only">(current)</span></a>
+            {else}
+              <a class="nav-link" href="{$_url}client/">Accueil <span class="sr-only">(current)</span></a>
+            {/if}
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -75,15 +79,56 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{$_url}client/domain-register/">Réservez votre domaine</a>
+            <!-- <a class="nav-link" href="{$_url}client/domain-register/">Réservez votre domaine</a> -->
           </li>
+          {if !empty($user)}
+
+            <!-- order list -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {$_L['My Orders']}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="extra-color"> 
+                <a class="dropdown-item" href="{$_url}client/domain-orders/">{$_L['Domain Orders']}</a>  
+                <a class="dropdown-item" href="{$_url}client/hosting-orders/">{$_L['Hosting Orders']}</a>  
+              </div>
+            </li>
+
+            <!-- invoice -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {$_L['Billing']}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="extra-color"> 
+                {if !empty($user) && has_access($user->roleid,'customers','create')}
+                  <a class="dropdown-item" href="{$_url}client/invoices/">{$_L['Invoices']}</a>  
+                {/if}
+                <a class="dropdown-item" href="{$_url}client/quotes/">{$_L['Quotes']}</a>  
+              </div>
+            </li>
+
+            <!-- support -->
+            {if $config['support']}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {$_L['Support']}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="extra-color"> 
+                  <a class="dropdown-item" href="{$_url}client/downloads/">{$_L['Documents']}</a>  
+                  <a class="dropdown-item" href="{$_url}client/tickets/new">{$_L['Open New Ticket']}</a>
+                  <a class="dropdown-item" href="{$_url}client/tickets/all">{$_L['Tickets']}</a>  
+                </div>
+              </li>
+            {/if}
+
+          {/if}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="javscript:void(0)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               WHOIS
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="extra-color">
               <a class="dropdown-item" href="{$_url}client/whois/">WHOIS</a>
-              <a class="dropdown-item" href="13th.html">VOTRE NOM DE DOMAINE</a>
+              <a class="dropdown-item" href="{$_url}client/domain-register/">VOTRE NOM DE DOMAINE</a>
             </div>
           </li>
           <li class="nav-item">
@@ -92,32 +137,25 @@
           <li class="nav-item">
             <a class="nav-link " href="{$_url}client/contact-us">Contact</a>
           </li>
+          {if !empty($user)}
+            <li class="nav-item">
+              <a class="nav-link " href="{$_url}client/profile/">{$_L['Profile']}</a>
+            </li>
+          {else}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                ESPACE CLIENT
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="extra-color"> 
+                <!-- <a class="dropdown-item" href="{$_url}client/login/">ESPACE CLIENT</a> -->
+                <a class="dropdown-item" href="{$_url}client/login/">Login</a>
+                <a class="dropdown-item" href="{$_url}client/register/">Inscription</a>
+              </div>
+            </li>
+          {/if}
+          {if !empty($user)}
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              ESPACE CLIENT
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="extra-color"> 
-              <a class="dropdown-item" href="{$_url}client/login/">ESPACE CLIENT</a>
-              <a class="dropdown-item" href="{$_url}client/login/">Login</a>
-              <a class="dropdown-item" href="{$_url}client/register/">Inscription</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " href="{$_url}client/login/"><img src="https://test.aleph-heberge.fr/ui/theme/default/assets/img/icone LOGIN.png" alt=""></a>
-          </li>
-          
-          <li class="nav-item">
-            {if $shopping_cart && $shopping_cart->items_count}
-            <a class="nav-link" href="{$base_url}client/checkout/">
-              <img style="width: 40px;" src="https://test.aleph-heberge.fr/ui/theme/default/assets/img/icone_panier.svg" alt="">
-              <span class="badge badge-icon custom-badge">{$shopping_cart->items_count}</span>
-            </a>
-            {/if}
-          </li>
-        </ul>
-        {if !empty($user)}
-          <!-- <div>
-              <a href="#" data-toggle="dropdown" title="{$user->account}" class="header-icon d-flex align-items-center justify-content-center ml-2 cursor-pointer">
+              <a href="#" data-toggle="dropdown" title="{$user->account}" class="nav-link dropdown-toggle user-dropdown-toggle">
 
                   {if $user['img'] eq ''}
                       <img src="{$app_url}ui/lib/img/default-user-avatar.png"  class="profile-image rounded-circle" alt="{$user->account}">
@@ -126,7 +164,7 @@
                   {/if}
               </a>
 
-              <div class="dropdown-menu dropdown-menu-animated dropdown-lg">
+              <div class="dropdown-menu">
                   <div class="dropdown-header bg-trans-gradient d-flex flex-row py-4 rounded-top">
                       <div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
                                   <span class="mr-2">
@@ -155,8 +193,22 @@
                       {$_L['Logout']}
                   </a>
               </div>
-          </div> -->
-        {/if}
+            </li>
+        {else}
+          <li class="nav-item">
+            <a class="nav-link " href="{$_url}client/login/"><img src="https://test.aleph-heberge.fr/ui/theme/default/assets/img/icone LOGIN.png" alt=""></a>
+          </li>
+        {/if} 
+          <li class="nav-item">
+            {if $shopping_cart && $shopping_cart->items_count}
+            <a class="nav-link" href="{$base_url}client/checkout/">
+              <img style="width: 40px;" src="https://test.aleph-heberge.fr/ui/theme/default/assets/img/icone_panier.svg" alt="">
+              <span class="badge badge-icon custom-badge">{$shopping_cart->items_count}</span>
+            </a>
+            {/if}
+          </li>
+        </ul>
+        
       </div>
     </div>
   </nav>
