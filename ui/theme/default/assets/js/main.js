@@ -4,7 +4,7 @@ $(document).ready(function(){
     //add class in header section
     var path = window.location.pathname.split("/").pop();
     console.log(path);
-    if(! path !== 'home'){
+    if(path !== 'home'){
         $('header').addClass('third-header');
     }
 
