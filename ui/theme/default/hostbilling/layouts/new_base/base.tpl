@@ -61,9 +61,9 @@
         <ul class="navbar-nav primary-menu">
           <li class="nav-item active">
             {if !empty($user)}
-              <a class="nav-link" href="{$_url}client/dashboard/">Accueil <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{$_url}client/dashboard">Accueil <span class="sr-only">(current)</span></a>
             {else}
-              <a class="nav-link" href="{$_url}client/">Accueil <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{$_url}client">Accueil <span class="sr-only">(current)</span></a>
             {/if}
           </li>
           <li class="nav-item dropdown">
@@ -73,7 +73,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="extra-color"> 
               {if count($groups)}
                 {foreach $groups as $group}
-                  <a class="dropdown-item" href="{$base_url}client/items/{$group->slug}/">{$group->name}</a>
+                  <a class="dropdown-item" href="{$base_url}client/items/{$group->slug}">{$group->name}</a>
                 {/foreach}
               {/if}
             </div>
@@ -89,8 +89,8 @@
                 {$_L['My Orders']}
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="extra-color"> 
-                <a class="dropdown-item" href="{$_url}client/domain-orders/">{$_L['Domain Orders']}</a>  
-                <a class="dropdown-item" href="{$_url}client/hosting-orders/">{$_L['Hosting Orders']}</a>  
+                <a class="dropdown-item" href="{$_url}client/domain-orders">{$_L['Domain Orders']}</a>  
+                <a class="dropdown-item" href="{$_url}client/hosting-orders">{$_L['Hosting Orders']}</a>  
               </div>
             </li>
 
@@ -101,9 +101,9 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="extra-color"> 
                 {if !empty($user) && has_access($user->roleid,'customers','create')}
-                  <a class="dropdown-item" href="{$_url}client/invoices/">{$_L['Invoices']}</a>  
+                  <a class="dropdown-item" href="{$_url}client/invoices">{$_L['Invoices']}</a>  
                 {/if}
-                <a class="dropdown-item" href="{$_url}client/quotes/">{$_L['Quotes']}</a>  
+                <a class="dropdown-item" href="{$_url}client/quotes">{$_L['Quotes']}</a>  
               </div>
             </li>
 
@@ -114,7 +114,7 @@
                   {$_L['Support']}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="extra-color"> 
-                  <a class="dropdown-item" href="{$_url}client/downloads/">{$_L['Documents']}</a>  
+                  <a class="dropdown-item" href="{$_url}client/downloads">{$_L['Documents']}</a>  
                   <a class="dropdown-item" href="{$_url}client/tickets/new">{$_L['Open New Ticket']}</a>
                   <a class="dropdown-item" href="{$_url}client/tickets/all">{$_L['Tickets']}</a>  
                 </div>
@@ -127,19 +127,19 @@
               WHOIS
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="extra-color">
-              <a class="dropdown-item" href="{$_url}client/whois/">WHOIS</a>
-              <a class="dropdown-item" href="{$_url}client/domain-register/">VOTRE NOM DE DOMAINE</a>
+              <a class="dropdown-item" href="{$_url}client/whois">WHOIS</a>
+              <a class="dropdown-item" href="{$_url}client/domain-register">VOTRE NOM DE DOMAINE</a>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="{$_url}client/kb/">Astuces</a>
+            <a class="nav-link " href="{$_url}client/kb">Astuces</a>
           </li>
           <li class="nav-item">
             <a class="nav-link " href="{$_url}client/contact-us">Contact</a>
           </li>
           {if !empty($user)}
             <li class="nav-item">
-              <a class="nav-link " href="{$_url}client/profile/">{$_L['Profile']}</a>
+              <a class="nav-link " href="{$_url}client/profile">{$_L['Profile']}</a>
             </li>
           {else}
             <li class="nav-item dropdown">
@@ -148,8 +148,8 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="extra-color"> 
                 <!-- <a class="dropdown-item" href="{$_url}client/login/">ESPACE CLIENT</a> -->
-                <a class="dropdown-item" href="{$_url}client/login/">Login</a>
-                <a class="dropdown-item" href="{$_url}client/register/">Inscription</a>
+                <a class="dropdown-item" href="{$_url}client/login">Login</a>
+                <a class="dropdown-item" href="{$_url}client/register">Inscription</a>
               </div>
             </li>
           {/if}
@@ -196,12 +196,12 @@
             </li>
         {else}
           <li class="nav-item">
-            <a class="nav-link " href="{$_url}client/login/"><img src="https://test.aleph-heberge.fr/ui/theme/default/assets/img/icone LOGIN.png" alt=""></a>
+            <a class="nav-link " href="{$_url}client/login"><img src="https://test.aleph-heberge.fr/ui/theme/default/assets/img/icone LOGIN.png" alt=""></a>
           </li>
         {/if} 
           <li class="nav-item">
             {if $shopping_cart && $shopping_cart->items_count}
-            <a class="nav-link" href="{$base_url}client/checkout/">
+            <a class="nav-link" href="{$base_url}client/checkout">
               <img style="width: 40px;" src="https://test.aleph-heberge.fr/ui/theme/default/assets/img/icone_panier.svg" alt="">
               <span class="badge badge-icon custom-badge">{$shopping_cart->items_count}</span>
             </a>
