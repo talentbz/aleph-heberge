@@ -151,7 +151,7 @@
                 ESPACE CLIENT
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="extra-color"> 
-                <!-- <a class="dropdown-item" href="{$_url}client/login/">ESPACE CLIENT</a> -->
+                <a class="dropdown-item" href="{$_url}client/espace-client">ESPACE CLIENT</a>
                 <a class="dropdown-item" href="{$_url}client/login">Login</a>
                 <a class="dropdown-item" href="{$_url}client/register">Inscription</a>
               </div>

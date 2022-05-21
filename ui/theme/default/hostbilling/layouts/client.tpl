@@ -16,7 +16,7 @@
             </div>
             <div class="col-lg-7">
               <div class="banner-img">
-                <img src="{{APP_URL}}/ui/theme/default/assets/img/Groupe_1.png" alt="">
+                <img src="{{APP_URL}}/ui/theme/default/assets/img/Groupe 1_2x.png" alt="">
               </div>
             </div>
           </div>

@@ -12,6 +12,11 @@ switch ($action) {
         ]);
 
         break;
+    case 'espace-client':
+        \view(get_theme_file('espace_client'), [
+        ]);
+
+        break;
     case 'home':
         //add domain (Auth: Danila)
         $domain_extensions = DomainPrice::all();

@@ -627,7 +627,7 @@ h1.code-heading {
     border-radius: 10px;
 }
 
-.input-box input {
+.input-box input, .input-box button {
     border: none;
     padding: 10px 10px;
     margin: 12px 0;
@@ -636,7 +636,7 @@ h1.code-heading {
     border-radius: 10px;
 }
 
-input.btn {
+.input-box button, .input-box-2 button {
     background: #78C8ED;
     color: white;
 }
@@ -649,7 +649,7 @@ input.btn {
     border-radius: 10px;
 }
 
-.input-box-2 input {
+.input-box-2 input, .input-box-2 button {
     border: none;
     padding: 10px 10px;
     margin: 12px 0;
