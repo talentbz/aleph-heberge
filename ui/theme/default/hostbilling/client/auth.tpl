@@ -23,18 +23,28 @@
 
             {if $type eq 'client_auth'}
 
-                <div class="mx-auto" style="max-width: 440px;">
-                    <div class="card p-4 mt-5" style="box-shadow: 1px 0 20px rgba(0, 0, 0, .08);">
+                <!-- <div class="mx-auto" style="max-width: 440px;">
+                    <div class="card p-4 mt-5" style="box-shadow: 1px 0 20px rgba(0, 0, 0, .08);"> -->
 
-                        <h1 class="fw-300 mb-3 text-center">
+                        <!-- <h1 class="fw-300 mb-3 text-center">
                             {$_L['Login']}
-                        </h1>
+                        </h1> -->
 
                         {if isset($notify)}
                             {$notify}
                         {/if}
-
-                        <form method="post" class="mt-3" id="form_client_auth" action="{$_url}client/auth/">
+                        <div class="input-box" style="margin:50px auto">
+                            <form method="post" class="mt-3" id="form_client_auth" action="{$_url}client/auth/">
+                                <h2 class="input-heading">CONNEXION</h2>
+                                <input type="email" id="username" name="username" placeholder="ADRESSE MAIL" required>
+                                <br>
+                                <input type="password" placeholder="MOT DE PASSE" id="password" name="password" required>
+                                <br>
+                                <button class="btn" type="submit" id="btn_client_auth">CONNECTION</button>
+                                <a href="{$_url}client/register">Mot de passe oublié ?</a>
+                            </form>
+                        </div>
+                        <!-- <form method="post" class="mt-3" id="form_client_auth" action="{$_url}client/auth/">
                             <div class="form-group">
                                 <label class="form-label" for="username">{$_L['Email Address']}</label>
                                 <input id="username" name="username" class="form-control form-control-lg" required>
@@ -63,13 +73,13 @@
 
 
 
-                        </form>
+                        </form> -->
 
 
 
-
+<!-- 
                     </div>
-                </div>
+                </div> -->
 
 
             {elseif $type eq 'client_password_reset'}
@@ -111,18 +121,33 @@
 
             {elseif $type eq 'client_register'}
 
-                <div class="mx-auto" style="max-width: 440px;">
-                    <div class="card p-4">
+                <!-- <div class="mx-auto" style="max-width: 440px;">
+                    <div class="card p-4"> -->
 
-                        <h1 class="fw-300 mb-3 text-center">
+                        <!-- <h1 class="fw-300 mb-3 text-center">
                             {__('Register')}
-                        </h1>
+                        </h1> -->
 
                         {if isset($notify)}
                             {$notify}
                         {/if}
+                        <div class="input-box-2" style="margin: 50px auto">
+                            <form method="post" id="form_client_register" class="mt-3" action="{$_url}client/register_post/">
+                                <h2 class="input-heading-2">INSCRIPTION</h2>
+                                <br>
+                                <input type="text" id="fullname" name="fullname" placeholder="NOM COMPLET" required>
+                                <br>
+                                <input type="email" id="email" name="email" placeholder="ADRESSE MAIL" required>
+                                <br>
+                                <input type="password" id="password" name="password" placeholder="{$_L['Password']}" required>
+                                <br>
+                                <input type="password" id="password2" name="password2" placeholder="CONFIRMER LE MOT DE PASSE" required>
+                                <br>
+                                <button type="submit" id="btn_client_register" class="btn">INSCRIPTION</button>
+                            </form>
+                        </div>
 
-                        <form method="post" id="form_client_register" class="mt-3" action="{$_url}client/register_post/">
+                        <!-- <form method="post" id="form_client_register" class="mt-3" action="{$_url}client/register_post/">
 
                             <div class="form-group">
                                 <label class="form-label" for="fullname">{$_L['Full_Name']}</label>
@@ -165,20 +190,20 @@
                             <div class="col-sm-12 text-center">
                                 {$_L['Already registered']}  <a href="{$_url}client/login/" class="text-info m-l-5"><b>{$_L['Login']}</b></a>
                             </div>
-                        </div>
+                        </div> -->
 
 
 
 
-                    </div>
-                </div>
+                    <!-- </div>
+                </div> -->
 
             {/if}
 
 
-            <div class="position-absolute pos-bottom pos-left pos-right p-3 text-center">
+            <!-- <div class="position-absolute pos-bottom pos-left pos-right p-3 text-center">
                 &copy; {date('Y')} {$config['CompanyName']}
-            </div>
+            </div> -->
         </div>
     </div>
 {/block}
