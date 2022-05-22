@@ -41,12 +41,12 @@
                 {/foreach}
             </select>
             <button class="btn-domain-search" id="btn_domain_submit" type="submit">VÉRIFIER LA DISPONIBILITÉ</button>
+        </form>
             <div class="row mt-3">
                 <div class="col-md-12" id="domain_search_result" style="display: none;">
 
                 </div>
             </div>  
-        </form>
         <!-- <form >
           <input type="text" placeholder="Votre domaine">
           <select>
