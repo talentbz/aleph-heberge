@@ -142,7 +142,7 @@
             </div>
         </div>
     </section>
-
+    
 
 {/block}
 
@@ -156,7 +156,10 @@
                 that.closest('.pricing_block').find('.selected_price').html(that.data('price') + '<span>/ ' +  that.data('date') + '</span>');
                 that.closest('.pricing_block').find('.btn_buy_now').attr('href',base_url + 'client/buy-now/' + that.data('slug') + '/' + that.data('term'));
             })
-
+            {if count($items) < 2}
+                var price_table = $('.pricing').detach();
+                $('.banner-info').append(price_table);  
+            {/if}
             // $('.select_payment_term').on('change',function () {
             //     let that = $(this);
 
