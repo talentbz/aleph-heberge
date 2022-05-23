@@ -7,7 +7,7 @@
 
 
 
-    <div class="container">
+    <!-- <div class="container">
 
         <div class="bg-white shadow p-4">
 
@@ -136,8 +136,6 @@
                                     </div>
                                 {/if}
 
-
-
                             </td>
                         </tr>
                     {/foreach}
@@ -220,8 +218,153 @@
 
         </div>
 
-    </div>
+    </div> -->
+    <section class="whois">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-6">
+                <div class="fiftin-inner-section d-flex">
+                    <img src="{{APP_URL}}/ui/theme/default/assets/img/icone panier.svg" alt="">
+                    <h1>VOTRE PANIER</h1>
+                    
+                  </div>
+                  
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+            {if count($items) || !empty($shopping_cart_items['domains'])}
+            <div class="main-select">
+                {foreach $items as $item}
+                    <div class="item_selected" id={$item->id}>
+                        <h3>{$item->name}</h3>
+                        <label for="first">{__('Billing Cycle')}</label>
+                        <select class="select_payment_term" data-id="{$item->id}" id="term_{$item->id}" >
+                            {foreach get_available_item_pricing_terms($item) as $key => $value}
+                                <option value="{$value['price']}"
+                                        {if isset($shopping_cart_items['hosting'][$item->id]['term']) && ($shopping_cart_items['hosting'][$item->id]['term'] === $key)}
+                                            selected
+                                        {/if}
+                                >{$value['name']} {formatCurrency($value['price'],$config['home_currency'])}</option>
+                            {/foreach}
+                        </select>
 
+                        {if $item->linux && count($item->linux)}
+                            <label for="second">OS</label>
+                            <select class="select_payment_term" data-id="os_{$item->id}" id="os_{$item->id}"  >
+                            
+                                <option data-price="0" data-term="linux" value="-1"
+                                    {if !isset($shopping_cart_items['hosting'][$item->id]['options']['linux']) }
+                                    selected
+                                {/if}>Select option</option>
+
+                                {foreach $item->linux as $key => $value}
+                                    <option value="{$key}" name="linux[{$key}][price]"
+                                    {if isset($shopping_cart_items['hosting'][$item->id]['options']['linux']) && ($shopping_cart_items['hosting'][$item->id]['options']['linux']['name'] === $value->name)}
+                                            selected
+                                        {/if}
+                                    >{$value->name} {$value->price} {$config['home_currency']}</option>
+                                {/foreach}
+                            </select>
+                        {/if}
+                        {if $item->require_domain_name}
+                            <label>{__('Enter Your Domain')}</label>
+                            <input class="hosting_set_domain_name" name="domain_name" data-id="{$item->id}"
+                                    {if isset($shopping_cart_items['hosting'][$item->id]['domain_name'])}
+                                        value="{$shopping_cart_items['hosting'][$item->id]['domain_name']}"
+                                    {/if}
+                            >
+                            <p>
+                                <a href="{$base_url}client/domain-register/">{__('Register a new domain?')}</a>
+                            </p>
+
+                        {/if}
+                        {if $item->dashboard && count($item->dashboard)}
+                            <label for="third">Panneau d'administration</label>
+                            <select class="select_payment_term" data-id="dashboard_{$item->id}" id="dashboard_{$item->id}" >
+                                <option data-price="0" data-term="dashboard" value="-1"
+                                    {if !isset($shopping_cart_items['hosting'][$item->id]['options']['dashboard']) }
+                                    selected
+                                {/if}>Select option</option>
+                                {foreach $item->dashboard as $key => $value}
+                                    <option value="{$key}" name="dashboard[{$key}][price]"
+                                    {if isset($shopping_cart_items['hosting'][$item->id]['options']['dashboard']) && ($shopping_cart_items['hosting'][$item->id]['options']['dashboard']['name'] === $value->name)}
+                                            selected
+                                        {/if}
+                                    >{$value->name} {$value->price} {$config['home_currency']}</option>
+                                {/foreach}
+                            </select>
+                        {/if}
+                        {if $item->data_center && count($item->data_center)}
+                            <label for="four">Data center</label>
+                            <select class="select_payment_term" data-id="data_center_{$item->id}" id="data_center_{$item->id}" >
+                                <option data-price="0" data-term="data_center" value="-1"
+                                    {if !isset($shopping_cart_items['hosting'][$item->id]['options']['data_center']) }
+                                    selected
+                                {/if}>Select option</option>
+                                {foreach $item->data_center as $key => $value}
+                                    <option value="{$key}" name="data_center[{$key}][price]"
+                                    {if isset($shopping_cart_items['hosting'][$item->id]['options']['data_center']) && ($shopping_cart_items['hosting'][$item->id]['options']['data_center']['name'] === $value->name)}
+                                            selected
+                                        {/if}
+                                    >{$value->name} {$value->price} {$config['home_currency']}</option>
+                                {/foreach}
+                            </select>
+                        {/if}
+                        {if $item->managed_server && count($item->managed_server)}
+                            <label for="five">Serveur managé</label>
+                            <select class="select_payment_term" data-id="managed_server_{$item->id}" id="managed_server_{$item->id}" >
+                                <option data-price="0" data-term="managed_server" value="-1" 
+                                {if !isset($shopping_cart_items['hosting'][$item->id]['options']['managed_server']) }
+                                    selected
+                                {/if}>Select option</option>
+                                
+                                {foreach $item->managed_server as $key => $value}
+                                
+                                    <option value="{$key}" name="managed_server[{$key}][price]"
+                                    {if isset($shopping_cart_items['hosting'][$item->id]['options']['managed_server']) && ($shopping_cart_items['hosting'][$item->id]['options']['managed_server']['name'] === $value->name)}
+                                            selected
+                                        {/if}
+                                    >{$value->name} {$value->price} {$config['home_currency']}</option>
+                                {/foreach}
+                            </select>
+                        {/if}
+                    </div>
+                {/foreach}
+            <label for="btn">TOTAL A PAYER</label>
+            <button id="btn">{formatCurrency($shopping_cart->total,$config['home_currency'])}</button>
+                
+            </div>
+            <div class="register-btn text-center" style="margin: 30px auto;">
+                {if $user}
+                    <a class="btn btn-primary" href="{$base_url}client/checkout-commit">{__('Pay Now')}</a>
+
+                {else}
+                    <a href="{$base_url}client/login/">
+                        <h5 class="text-info">{__('I already have an account')}</h5>
+                    </a>
+
+                    <a href="{$base_url}client/register/">
+                        <h5 class="text-info">{__('Or create an account')}</h5>
+                    </a>
+                {/if}
+                <a class="btn btn-success" href="{$base_url}client/">{__('Continue Shopping')}</a>
+                <a class="btn btn-danger" href="{$base_url}client/delete-shopping-cart">{__('Empty Shopping Cart')}</a>
+            </div>
+            {else}
+
+                {__('No items in the shopping cart.')}
+                <div class="hr-line-dashed"></div>
+                <a class="btn btn-success" href="{$base_url}client/">{__('Go to Homepage')}</a>
+            <!-- <div class="register-btn text-center">
+                <button>REGLEMENT</button>
+            </div> -->
+            {/if}
+        </div>
+        
+      </div>
+    </div>
+  </section>
 
 
 
@@ -246,7 +389,6 @@
             $('#item_price_' + selectedItem).text(total);
             $('.select_payment_term').on('change',function () {
                 let that = $(this);
-                
                 window.location = base_url + 'client/shopping-cart-update-term/' + selectedItem + '/?total=' + total+'&OS='+$( '#os_'+ selectedItem +' option:selected' ).val()
                 +'&dashboard='+$( '#dashboard_'+ selectedItem +' option:selected' ).val()+'&managed_server='+$( '#managed_server_'+ selectedItem +' option:selected' ).val()
                 +'&data_center='+$( '#data_center_'+ selectedItem +' option:selected' ).val();

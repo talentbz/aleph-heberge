@@ -492,7 +492,9 @@ only screen and (max-device-width: 425px) {
   form.form-control button {
     margin-top: 11px;
   }
-
+  .domain-form input{
+    width: 216px;
+  }
   .domain-form button {
     width: 216px;
     padding: 13px;

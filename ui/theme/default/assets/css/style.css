@@ -831,3 +831,7 @@ div#extra-color a {
 .user-dropdown-toggle::after{
     display: none !important;
 }
+.item_selected {
+    display: grid;
+    margin-top: 30px;
+}

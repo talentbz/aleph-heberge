@@ -262,9 +262,9 @@
           </div>
           <div class="footer-item">
             <ul>
-              <li><a href="#"1 rue rogozine Ashdod - Israël >1 rue rogozine Ashdod - Israël</a></li>
+              <li><a href="#">4 RUE DE LA REPUBLIQUE 69001 LYON - FRANCE</a></li>
               <li><a href="#">Téléphone: 01 77 47 27 08 </a></li>
-              <li><a href="">Mail: contact@aleph-hosting.com</a></li>
+              <li><a href="mailto:contact@aleph-heberge.fr">Mail: contact@aleph-heberge.fr</a></li>
             </ul>
     
           </div>

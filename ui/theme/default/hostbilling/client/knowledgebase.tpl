@@ -22,7 +22,7 @@
      <div class="row">
          <div class="col-lg-12">
             <div class="code-inner">
-               <div class="card mx-auto" style="width: 800px">
+               <div class="card mx-auto" style="width: 800px; background:transparent; border:none; box-shadow:none">
                     <div class="card-body">
 
                         <h1 class="text-center"> {$_L['Articles']} </h1>

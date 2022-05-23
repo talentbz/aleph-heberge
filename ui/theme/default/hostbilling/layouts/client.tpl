@@ -69,7 +69,7 @@
 
     <section class="domain">
       <div class="container">
-       <div class="row justify-content-center">
+       <div class="justify-content-center">
         <div class="domain-text">
           <div class="domain-first-heading text-center">
             <p>ENREGISTRER VOTRE NOM DE DOMAINE</p>

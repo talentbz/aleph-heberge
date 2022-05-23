@@ -34,9 +34,9 @@
                 <div class="main-info">
                 <img src="{{APP_URL}}/ui/theme/default/assets/img/logo aleph heberge.png" alt="">
                 <ul>
-                    <li>• 1 rue Rogozine Ashdod - Israël </li>
+                    <li>• 4 RUE DE LA REPUBLIQUE 69001 LYON </li>
                     <li>• Tél.: 01 77 47 27 08 </li>
-                    <li>• Mail: contact@aleph-hosting.com</li>
+                    <li>• Mail:  contact@aleph-heberge.fr</li>
                 </ul>
                 </div>
             </div>
