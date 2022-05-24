@@ -18,11 +18,13 @@
             <div class="col-lg-6">
                 <div class="contact">
                     <div class="message-box">
-                    <input type="text" placeholder="NOM COMPLET"> 
-                    <input type="email" placeholder="ADRESSE MAIL">
-                    <input type="tel" placeholder="TELEPHONE">
-                    <textarea placeholder="VOTRE MESSAGE" cols="30" rows="10"></textarea>
-                    <button>ENVOYER</button>
+                        <form id="contact-form" style="display:contents">
+                            <input type="text" id="title" placeholder="NOM COMPLET" name="title" required> 
+                            <input type="email" id="email" placeholder="ADRESSE MAIL" name="email" required>
+                            <input type="tel" id="phone" placeholder="TELEPHONE" name="phone" required>
+                            <textarea id="contents" placeholder="VOTRE MESSAGE" cols="30" rows="10" name="contents" required></textarea>
+                            <button type="submit">ENVOYER</button>
+                        </form>
                     </div>
             </div>
         </div>
@@ -50,4 +52,25 @@
         </div>
     </div>
 </section>
+{/block}
+{block name=script}
+<script>
+    $(function () {
+        $('form#contact-form').submit(function(e){
+            e.preventDefault();
+            $.post( "{$_url}client/contact-form-post/", {
+                title: $('#title').val(),
+                email: $('#email').val(),
+                phone: $('#phone').val(),
+                contents: $('#contents').val(),
+            })
+                .done(function( res ) {
+                    console.log(res);
+                    toastr.success('success');    
+                }).fail(function(data) {
+                    toastr.error(data.responseText);
+            });
+        })
+    });
+</script>
 {/block}

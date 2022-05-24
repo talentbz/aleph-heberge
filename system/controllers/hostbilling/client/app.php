@@ -12,6 +12,33 @@ switch ($action) {
         ]);
 
         break;
+    case 'contact-form-post':
+        $data = $request->all();
+        
+        $title = $data['title'];
+        $email = $data['email'];
+        $phone = $data['phone'];
+        $contents = $data['contents'];
+        // contact information
+
+        $recipient_email = 'noreply@aleph-heberge.fr';
+        $contact_name = $data['title'];
+        $contact_email = $data['email'];
+        $message = $data['contents'];
+        $subject = 'Contact Form';
+
+        // Email header
+        $headers[] = 'MIME-Version: 1.0';
+        $headers[] = 'Content-type: text/html; charset=utf-8';
+        $headers[] = "To: $recipient_email";
+        $headers[] = "From: $contact_email";
+        $header = implode('\r\n', $headers);
+
+        mail($recipient_email, $subject, $message, $header);
+
+        return 'success';
+
+        break;
     case 'espace-client':
         \view(get_theme_file('espace_client'), [
         ]);
