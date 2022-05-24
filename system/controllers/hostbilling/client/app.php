@@ -14,24 +14,20 @@ switch ($action) {
         break;
     case 'contact-form-post':
         $data = $request->all();
-        
-        $title = $data['title'];
-        $email = $data['email'];
-        $phone = $data['phone'];
-        $contents = $data['contents'];
         // contact information
 
         $recipient_email = 'noreply@aleph-heberge.fr';
         $contact_name = $data['title'];
         $contact_email = $data['email'];
-        $message = 'Full Name: '. $contact_name.'Email Address: '. $contact_email. ' Message :'.$data['contents'];
+        $phone = $data['phone'];
+        $message = 'Full Name: '. $contact_name.' Email Address: '. $contact_email. ' Phone Number: '.$phone.' Message :'.$data['contents'];
         $subject = 'Contact Form';
 
         // Email header
         $headers[] = 'MIME-Version: 1.0';
         $headers[] = 'Content-type: text/html; charset=utf-8';
         $headers[] = "To: $recipient_email";
-        $headers[] = "From: webmaster@example.com";
+        $headers[] = "From: $contact_email";
         $header = implode('\r\n', $headers);
 
         mail($recipient_email, $subject, $message, $header);
@@ -3284,7 +3280,7 @@ vMax: \'9999999999999999.00\',
         break;
 
     case 'where':
-        r2(U . 'client/home/');
+        r2(U . 'client/home');
 
         break;
 
