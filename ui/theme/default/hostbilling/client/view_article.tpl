@@ -8,11 +8,11 @@
 
         <a class="btn btn-primary my-3" href="{$base_url}client/kb/">{$_L['Back to the List']}</a>
 
-        <div class="card">
+        <div class="card article-code">
 
             <div class="card-body">
 
-                <h1 class="text-center mb-3"> {$article->title} </h1>
+                <h1 class="code-heading mb-3" style="color:#212529;"> {$article->title} </h1>
                 <p>
                     {$article->description}
                 </p>

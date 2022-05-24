@@ -835,3 +835,8 @@ div#extra-color a {
     display: grid;
     margin-top: 30px;
 }
+.article-code p{
+    color: #212529 !important;
+    font-weight: 400;
+    line-height: 1.5;
+}
