@@ -24,17 +24,7 @@ switch ($action) {
         $recipient_email = 'noreply@aleph-heberge.fr';
         $contact_name = $data['title'];
         $contact_email = $data['email'];
-        $message = '<table width="90%" border="0">';
-        $message .=  '<tr>';
-        $message .= '<td><b>Full Name:</b></td><td>'.$contact_name.'</td>';
-        $message .= '</tr>';
-        $message .= '<tr>';
-        $message .= '<td><b>Email:</b></td><td>'.$contact_email.'</td>';
-        $message .= '</tr>';
-        $message .= '<tr>';
-        $message .= '<td><b>Message:</b></td><td>'.$data['contents'].'</td>';
-        $message .= '</tr>';
-        $message .= '<tr></table>';
+        $message = 'Full Name: '. $contact_name.'Email Address: '. $contact_email. 'message :'.$data['contents'];
         $subject = 'Contact Form';
 
         // Email header
