@@ -6,7 +6,7 @@
 
     <div class="mx-auto" style="width: 800px">
 
-        <a class="btn btn-primary my-3" href="{$base_url}client/kb/">{$_L['Back to the List']}</a>
+        <a class="btn btn-primary btn-article my-3" href="{$base_url}client/kb/">{$_L['Back to the List']}</a>
 
         <div class="card article-code">
 
