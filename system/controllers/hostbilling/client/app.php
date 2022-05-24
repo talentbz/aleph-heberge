@@ -31,7 +31,7 @@ switch ($action) {
         $headers[] = 'MIME-Version: 1.0';
         $headers[] = 'Content-type: text/html; charset=utf-8';
         $headers[] = "To: $recipient_email";
-        $headers[] = "From: $contact_email";
+        $headers[] = "From: webmaster@example.com";
         $header = implode('\r\n', $headers);
 
         mail($recipient_email, $subject, $message, $header);
