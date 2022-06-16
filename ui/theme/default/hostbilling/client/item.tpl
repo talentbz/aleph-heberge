@@ -123,6 +123,15 @@
 
             });
             var price = {$item->price_monthly};
+
+            // one time fee.
+            var one_time_fee = {$item->one_time_fee};
+            if(price == 0){
+                if(one_time_fee !=0){
+                    price = one_time_fee;
+                }
+            };
+            
             var total = parseInt(price);
             $("#total_price").text(total);
 

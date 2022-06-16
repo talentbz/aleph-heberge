@@ -73,8 +73,7 @@ switch ($action) {
         $slug = route(2, false);
         if ($slug) {
             $item = HostingPlan::where('slug', $slug)->first();
-            // dd($item->options);
-        $item->options = json_decode($item->options);
+            $item->options = json_decode($item->options);
             $item->linux =  array(
                 (object) [
                     'name' => "centos 8",
@@ -147,7 +146,6 @@ switch ($action) {
                     "price" => 0
                 ]
             );
-
             if ($item) {
                 \view('hostbilling/client/item', [
                     'item' => $item,
