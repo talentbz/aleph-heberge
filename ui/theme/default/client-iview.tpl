@@ -356,24 +356,29 @@
 
                                     <div id="stripeDiv" style="display: none; margin-bottom: 25px; margin-top: 15px; padding: 15px; background: #f5f5f6;">
 
-
                                         <form action="{$_url}client/payment-stripe" method="post" id="payment-form">
-                                            <div class="form-row">
-                                                <label for="card-element">
-                                                    Credit or debit card
-                                                </label>
-                                                <div id="card-element" class="form-control">
-                                                    <!-- A Stripe Element will be inserted here. -->
-                                                </div>
-
-                                                <!-- Used to display form errors. -->
-                                                <div id="card-errors" role="alert"></div>
+                                            <div class="form-group">
+                                                <label>NAME</label>
+                                                <input type="text" id="name" class="form-control" placeholder="Enter name" required="" autofocus="">
                                             </div>
-
+                                            <div class="form-group">
+                                                <label>EMAIL</label>
+                                                <input type="email" id="email" class="form-control" placeholder="Enter email" required="">
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label>Credit or debit card</label>
+                                                <div id="card-element">
+                                                    <!-- Stripe.js will create card input elements here -->
+                                                </div>
+                                            </div>
                                             <input type="hidden" name="invoice_id" value="{$d['id']}">
                                             <input type="hidden" name="view_token" value="{$d['vtoken']}">
-                                            <button class="btn btn-primary" id="btnStripeSubmit" style="margin-top: 20px;">Submit Payment</button>
-
+                                            <!-- Form submit button -->
+                                            <button id="submitBtn" class="btn btn-success">
+                                                <div class="spinner hidden" id="spinner"></div>
+                                                <span id="buttonText">Submit Payment</span>
+                                            </button>
                                         </form>
                                     </div>
 
@@ -859,7 +864,7 @@
 
                 $('#btnPayNow').on('click',function (e) {
                     {$plugin_extra_js}
-
+                    // console.log($payment_gateways_by_processor);
                     {if isset($payment_gateways_by_processor['stripe'])}
 
                     $stripeDiv = $('#stripeDiv');
@@ -882,7 +887,6 @@
 
                 // Create a Stripe client.
                 var stripe = Stripe('{$payment_gateways_by_processor['stripe']['value']}');
-
 // Create an instance of Elements.
             var elements = stripe.elements();
 

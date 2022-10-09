@@ -814,7 +814,7 @@ switch ($action) {
 
     case 'iview':
         Event::trigger('client/iview/');
-
+        
         $has_login_token = Contact::hasLoginToken();
 
         $today = date('Y-m-d H:i:s');
@@ -974,7 +974,6 @@ switch ($action) {
             $payment_gateways = PaymentGateway::where('status', 'Active')
                 ->orderBy('sorder', 'asc')
                 ->get();
-
             $payment_gateways_by_processor = $payment_gateways
                 ->keyBy('processor')
                 ->toArray();
@@ -985,7 +984,12 @@ switch ($action) {
                 $format_currency_override['precision'] =
                     $config['decimal_places_products_and_services'];
             }
-
+            
+            // custom code for get stripe key (20022.10.09)
+            $stripe_key =  ORM::for_table('sys_pg')
+                            ->where('processor', 'stripe')
+                            ->find_one()->value;
+            
             view('client-iview', [
                 'company' => $company,
                 'quote' => $quote,
@@ -999,6 +1003,7 @@ switch ($action) {
                 'has_login_token' => $has_login_token,
                 'render' => $render,
                 'format_currency_override' => $format_currency_override,
+                'stripe_key' => $stripe_key,
             ]);
         } else {
             r2(U . 'customers/list', 'e', $_L['Account_Not_Found']);
@@ -4898,7 +4903,6 @@ vMax: \'9999999999999999.00\',
     case 'payment-stripe':
         $invoice_id = _post('invoice_id');
         $view_token = _post('view_token');
-
         $invoice = Invoice::where('id', $invoice_id)
             ->where('vtoken', $view_token)
             ->first();
