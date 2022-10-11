@@ -46,7 +46,6 @@
 
     <style type="text/css">
         body {
-
             background-color: #e9ebee;
             overflow-x: visible;
         }
@@ -55,31 +54,22 @@
             max-width: 980px;
             background-color: #FFF;
             position: relative;
-
         }
-
         .fancybox-slide--iframe .fancybox-content {
             width  : 600px;
             max-width  : 80%;
             max-height : 80%;
             margin: 0;
         }
-
         .panel {
-
             /*box-shadow: none;*/
-
             -webkit-box-shadow: 0 10px 40px 0 rgba(18,106,211,.07), 0 2px 9px 0 rgba(18,106,211,.06);
             box-shadow: 0 10px 40px 0 rgba(18,106,211,.07), 0 2px 9px 0 rgba(18,106,211,.06);
-
         }
-
         .panel-body {
             padding: 25px;
         }
-
         {if isset($payment_gateways_by_processor['stripe'])}
-
         .StripeElement {
             background-color: white;
             height: 40px;
@@ -90,30 +80,134 @@
             -webkit-transition: box-shadow 150ms ease;
             transition: box-shadow 150ms ease;
         }
-
         .StripeElement--focus {
             box-shadow: 0 1px 3px 0 #cfd7df;
         }
-
         .StripeElement--invalid {
             border-color: #fa755a;
         }
-
         .StripeElement--webkit-autofill {
             background-color: #fefde5 !important;
         }
-
         {/if}
-
-
         .table.invoice-items{
             border: 1px solid #dee2e6;
         }
-
         .table.invoice-items td, .table.invoice-items th {
             border: 1px solid #dee2e6;
         }
+        #paymentResponse{
+            font-size: 17px;
+            border: 1px dashed;
+            padding: 10px;
+            color: #EA4335;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .hidden {
+            display: none;
+        }
+        #frmProcess{
+            font-size: 18px;
+            color: #666;
+        }
+        .ring {
+            display: inline-block;
+            width: 75px;
+            height: 75px;
+            vertical-align: middle;
+        }
+        .ring:after {
+            content: " ";
+            display: block;
+            width: 48px;
+            height: 48px;
+            margin: 8px;
+            border-radius: 50%;
+            border: 6px solid #095cfa;
+            border-color: #095cfa transparent #095cfa transparent;
+            animation: ring 1.2s linear infinite;
+        }
+        #submitBtn {
+            width: 140px;
+        }
+        @keyframes ring {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+        }
+        /* spinner/processing state, errors */
+        .spinner,
+        .spinner:before,
+        .spinner:after {
+        border-radius: 50%;
+        }
+        .spinner {
+        color: #ffffff;
+        font-size: 22px;
+        text-indent: -99999px;
+        margin: 0px auto;
+        position: relative;
+        width: 20px;
+        height: 20px;
+        box-shadow: inset 0 0 0 2px;
+        -webkit-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        transform: translateZ(0);
+        }
+        .spinner:before,
+        .spinner:after {
+        position: absolute;
+        content: "";
+        }
+        .spinner:before {
+        width: 10.4px;
+        height: 20.4px;
+        background-color: #3799e4;
+        border-radius: 20.4px 0 0 20.4px;
+        top: -0.2px;
+        left: -0.2px;
+        -webkit-transform-origin: 10.4px 10.2px;
+        transform-origin: 10.4px 10.2px;
+        -webkit-animation: loading 2s infinite ease 1.5s;
+        animation: loading 2s infinite ease 1.5s;
+        }
+        .spinner:after {
+        width: 10.4px;
+        height: 10.2px;
+        border-color: #3799e4;
+        border-radius: 0 10.2px 10.2px 0;
+        top: -0.1px;
+        left: 10.2px;
+        -webkit-transform-origin: 0px 10.2px;
+        transform-origin: 0px 10.2px;
+        -webkit-animation: loading 2s infinite ease;
+        animation: loading 2s infinite ease;
+        }
 
+        @-webkit-keyframes loading {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+        }
+        @keyframes loading {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+        }
 
     </style>
 
@@ -355,8 +449,8 @@
                                 {if isset($payment_gateways_by_processor['stripe'])}
 
                                     <div id="stripeDiv" style="display: none; margin-bottom: 25px; margin-top: 15px; padding: 15px; background: #f5f5f6;">
-
-                                        <form action="{$_url}client/payment-stripe" method="post" id="payment-form">
+                                        <div id="paymentResponse" class="hidden"></div>
+                                        <form id="payment-form">
                                             <div class="form-group">
                                                 <label>NAME</label>
                                                 <input type="text" id="name" class="form-control" placeholder="Enter name" required="" autofocus="">
@@ -372,14 +466,19 @@
                                                     <!-- Stripe.js will create card input elements here -->
                                                 </div>
                                             </div>
-                                            <input type="hidden" name="invoice_id" value="{$d['id']}">
-                                            <input type="hidden" name="view_token" value="{$d['vtoken']}">
+                                            <input type="hidden" id="invoice_id" name="invoice_id" value="{$d['id']}">
+                                            <input type="hidden" id="view_token" name="view_token" value="{$d['vtoken']}">
+                                            <input type="hidden" id="token_id" value="">
                                             <!-- Form submit button -->
-                                            <button id="submitBtn" class="btn btn-success">
+                                            <button id="submitBtn" class="btn btn-primary">
                                                 <div class="spinner hidden" id="spinner"></div>
                                                 <span id="buttonText">Submit Payment</span>
                                             </button>
                                         </form>
+                                        <!-- Display processing notification -->
+                                        <div id="frmProcess" class="hidden">
+                                            <span class="ring"></span> Processing...
+                                        </div>
                                     </div>
 
                                 {/if}
@@ -759,10 +858,7 @@
 
 
 <script>
-
     var _L = [];
-
-
     _L['Save'] = '{$_L['Save']}';
     _L['Submit'] = '{$_L['Submit']}';
     _L['Loading'] = '{$_L['Loading']}';
@@ -774,10 +870,8 @@
     _L['are_you_sure'] = '{$_L['are_you_sure']}';
     _L['Saved Successfully'] = '{$_L['Saved Successfully']}';
     _L['Empty'] = '{$_L['Empty']}';
-
     var app_url = '{$app_url}';
     var base_url = '{$base_url}';
-
     {if ($config['animate']) eq '1'}
     var config_animate = 'Yes';
     {else}
@@ -809,25 +903,14 @@
     <script src="{$app_url}ui/lib/jSignature.min.js"></script>
 
     <script>
-
-
-
         $(function () {
-
             var $signaturePadArea = $("#signaturePadArea");
-
             $signaturePadArea.jSignature({
                 color:"#000",
-
-
             });
-
             {if $d['signature_data_base64'] != '' }
-
             $signaturePadArea.jSignature("setData","{$d['signature_data_base64']}");
-
             {/if}
-
             $signaturePadArea.bind('change', function(e){
                 var signData = $signaturePadArea.jSignature("getData");
                 $.post( "{$_url}client/save-invoice-signature", {
@@ -836,14 +919,9 @@
                     signData: signData,
                 });
             });
-
-
             $('#clearSignature').on('click',function () {
                 $signaturePadArea.jSignature("reset");
             });
-
-
-
         });
     </script>
 
@@ -852,44 +930,33 @@
 <script>
     jQuery(document).ready(function() {
         // initiate layout and plugins
-
         var $paymentGateway = $('#paymentGateway');
-
         {if isset($xjq)}
         {$xjq}
         {/if}
-
         if(document.getElementById('btnPayNow'))
             {
-
                 $('#btnPayNow').on('click',function (e) {
                     {$plugin_extra_js}
                     // console.log($payment_gateways_by_processor);
                     {if isset($payment_gateways_by_processor['stripe'])}
-
                     $stripeDiv = $('#stripeDiv');
-
                     if($paymentGateway.val() === 'stripe')
                         {
                             e.preventDefault();
-
                             $stripeDiv.show('slow');
                         }
-
-
-
                     {/if}
-
                 });
-
-
                 {if isset($payment_gateways_by_processor['stripe'])}
-
                 // Create a Stripe client.
+                
                 var stripe = Stripe('{$payment_gateways_by_processor['stripe']['value']}');
+                const subscrFrm = document.querySelector("#payment-form");
+                // Attach an event handler to subscription form
+                subscrFrm.addEventListener("submit", handleSubscrSubmit);
 // Create an instance of Elements.
             var elements = stripe.elements();
-
 // Custom styling can be passed to options when creating an Element.
 // (Note that this demo uses a wider set of styles than the guide below.)
             var style = {
@@ -908,66 +975,126 @@
                     iconColor: '#fa755a'
                 }
             };
-
 // Create an instance of the card Element.
             var card = elements.create('card', { style: style });
-
 // Add an instance of the card Element into the `card-element` <div>.
             card.mount('#card-element');
-
 // Handle real-time validation errors from the card Element.
             card.addEventListener('change', function(event) {
-                var displayError = document.getElementById('card-errors');
-                if (event.error) {
-                    displayError.textContent = event.error.message;
-                } else {
-                    displayError.textContent = '';
-                }
+                displayError(event);
             });
-
-// Handle form submission.
-            var form = document.getElementById('payment-form');
-            var $btnStripeSubmit = $('#btnStripeSubmit');
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
-                $btnStripeSubmit.prop('disabled',true);
+            function displayError(event) {
+                if (event.error) {
+                    showMessage(event.error.message);
+                }
+            }
+            
+            async function handleSubscrSubmit(e) {
+                e.preventDefault();
+                setLoading(true);
                 stripe.createToken(card).then(function(result) {
                     if (result.error) {
-                        // Inform the user if there was an error.
-                        var errorElement = document.getElementById('card-errors');
-                        errorElement.textContent = result.error.message;
-                        $btnStripeSubmit.prop('disabled',false);
+                        showMessage(result.error.message);
+                        setProcessing(false);
+                        setLoading(false);
                     } else {
-                        // Send the token to your server.
-                        stripeTokenHandler(result.token);
-
+                        document.getElementById("token_id").setAttribute('value', result.token.id);
                     }
                 });
-            });
-
-// Submit the form with the token ID.
-            function stripeTokenHandler(token) {
-                // Insert the token ID into the form so it gets submitted to the server
-                var form = document.getElementById('payment-form');
-                var hiddenInput = document.createElement('input');
-                hiddenInput.setAttribute('type', 'hidden');
-                hiddenInput.setAttribute('name', 'stripeToken');
-                hiddenInput.setAttribute('value', token.id);
-                form.appendChild(hiddenInput);
-
-                // Submit the form
-                form.submit();
-
-
-
+                let customer_name = document.getElementById("name").value;
+                let customer_email = document.getElementById("email").value;
+                let invoice_id = document.getElementById("invoice_id").value;
+                let view_token = document.getElementById("view_token").value;
+                let token_id = document.getElementById("token_id").value;
+                fetch("{$_url}client/payment-stripe", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ 
+                        name: customer_name,
+                        term: '{$d['term']}',
+                        email: customer_email,
+                        invoice_id: invoice_id,
+                        view_token: view_token,
+                        token_id: token_id,
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.subscriptionId && data.clientSecret) {
+                        paymentProcess(data.clientSecret);
+                    } else {
+                        showMessage(data.error);
+                    }
+                    
+                    setLoading(false);
+                })
+                .catch(console.error);
             }
 
+            function paymentProcess(clientSecret){
+                setProcessing(true);
+                
+                let customer_name = document.getElementById("name").value;
+                
+                // Create payment method and confirm payment intent.
+                stripe.confirmCardPayment(clientSecret, {
+                    payment_method: {
+                        card: card,
+                        billing_details: {
+                            name: customer_name,
+                        },
+                    }
+                }).then((result) => {
+                    if(result.error) {
+                        showMessage(result.error.message);
+                        setProcessing(false);
+                        setLoading(false);
+                    } else {
+                        location.reload();
+                    }
+                });
+            }
+            // Display message
+            function showMessage(messageText) {
+                const messageContainer = document.querySelector("#paymentResponse");
+                
+                messageContainer.classList.remove("hidden");
+                messageContainer.textContent = messageText;
+                
+                setTimeout(function () {
+                    messageContainer.classList.add("hidden");
+                    messageText.textContent = "";
+                }, 5000);
+            }
+
+            // Show a spinner on payment submission
+            function setLoading(isLoading) {
+                if (isLoading) {
+                    // Disable the button and show a spinner
+                    document.querySelector("#submitBtn").disabled = true;
+                    document.querySelector("#spinner").classList.remove("hidden");
+                    document.querySelector("#buttonText").classList.add("hidden");
+                } else {
+                    // Enable the button and hide spinner
+                    document.querySelector("#submitBtn").disabled = false;
+                    document.querySelector("#spinner").classList.add("hidden");
+                    document.querySelector("#buttonText").classList.remove("hidden");
+                }
+            }
+
+            // Show a spinner on payment form processing
+            function setProcessing(isProcessing) {
+                if (isProcessing) {
+                    subscrFrm.classList.add("hidden");
+                    document.querySelector("#frmProcess").classList.remove("hidden");
+                } else {
+                    subscrFrm.classList.remove("hidden");
+                    document.querySelector("#frmProcess").classList.add("hidden");
+                }
+            }
             {/if}
             }
-
-
     });
-
 </script>
 {$config['footer_scripts']}
 </body>

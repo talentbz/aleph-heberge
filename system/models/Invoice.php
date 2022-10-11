@@ -1431,6 +1431,7 @@ class Invoice extends Model
         $invoice->tax2 = $tax2;
         $invoice->taxrate2 = $taxrate2;
         $invoice->paymentmethod = $paymentmethod;
+        $invoice->term = $item['term'];
         $invoice->save();
 
         foreach ($data['invoice_items'] as $item) {

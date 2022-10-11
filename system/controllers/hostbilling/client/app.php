@@ -436,6 +436,7 @@ switch ($action) {
                             'name' => $name,
                             'amount' => $price,
                             'quantity' => $value['quantity'],
+                            'term' => $value['term'], // create term for stripe subscription
                         ];
                     }
                 }
@@ -463,6 +464,7 @@ switch ($action) {
                             'name' => $value['name'] . ' (' . $term_name . ')',
                             'amount' => $value['price'],
                             'quantity' => 1,
+                            'term' => $value['term'], // create term for stripe subscription
                         ];
                     }
                 }
@@ -985,11 +987,6 @@ switch ($action) {
                     $config['decimal_places_products_and_services'];
             }
             
-            // custom code for get stripe key (20022.10.09)
-            $stripe_key =  ORM::for_table('sys_pg')
-                            ->where('processor', 'stripe')
-                            ->find_one()->value;
-            
             view('client-iview', [
                 'company' => $company,
                 'quote' => $quote,
@@ -1003,7 +1000,6 @@ switch ($action) {
                 'has_login_token' => $has_login_token,
                 'render' => $render,
                 'format_currency_override' => $format_currency_override,
-                'stripe_key' => $stripe_key,
             ]);
         } else {
             r2(U . 'customers/list', 'e', $_L['Account_Not_Found']);
@@ -4901,8 +4897,19 @@ vMax: \'9999999999999999.00\',
         break;
 
     case 'payment-stripe':
-        $invoice_id = _post('invoice_id');
-        $view_token = _post('view_token');
+        $jsonStr = file_get_contents('php://input'); 
+        $jsonObj = json_decode($jsonStr);
+        $name = $jsonObj->name;
+        $email = $jsonObj->email;
+        $planInterval = $jsonObj->term;
+        $token = $jsonObj->token_id;
+        if($planInterval == 'monthly') {
+            $planInterval = 'month';
+        } elseif($planInterval == 'yearly'){
+            $planInterval = 'year';
+        }
+        $invoice_id = $jsonObj->invoice_id;
+        $view_token = $jsonObj->view_token;
         $invoice = Invoice::where('id', $invoice_id)
             ->where('vtoken', $view_token)
             ->first();
@@ -4912,33 +4919,113 @@ vMax: \'9999999999999999.00\',
             'stripe'
         )->first();
 
+        
         if ($invoice && $payment_gateway) {
             // Get client
 
-            $contact = Contact::find($invoice->userid);
+            if($planInterval != 'one_time'){
+                $contact = Contact::find($invoice->userid);
 
-            $invoice_due_amount = getInvoiceDueAmount($invoice);
+                $invoice_due_amount = getInvoiceDueAmount($invoice);
 
-            \Stripe\Stripe::setApiKey($payment_gateway->c1);
+                \Stripe\Stripe::setApiKey($payment_gateway->c1);
 
-            $amount = round($invoice_due_amount * 100);
-            $amount = (int) $amount;
+                $amount = round($invoice_due_amount * 100);
+                $amount = (int) $amount;
 
-            $token = $_POST['stripeToken'];
-            $charge = \Stripe\Charge::create([
-                'amount' => $amount,
-                'currency' => $payment_gateway->c2,
-                'description' => getInvoiceNumber($invoice),
-                'source' => $token,
-                'capture' => true,
-            ]);
+                try {   
+                    $customer = \Stripe\Customer::create([ 
+                        'name' => $name,  
+                        'email' => $email 
+                    ]);  
+                }catch(Exception $e) {   
+                    $api_error = $e->getMessage();   
+                }
 
-            if (isset($charge->status) && $charge->status == 'succeeded') {
-                $invoice->status = 'Paid';
-                $invoice->save();
+                if(empty($api_error) && $customer){ 
+                    try { 
+                        // Create price with subscription info and interval 
+                        $price = \Stripe\Price::create([ 
+                            'unit_amount' => $amount, 
+                            'currency' => $payment_gateway->c2, 
+                            'recurring' => ['interval' => $planInterval], 
+                            'product_data' => ['name' => getInvoiceNumber($invoice)], 
+                        ]); 
+                    } catch (Exception $e) {  
+                        $api_error = $e->getMessage(); 
+                    } 
+                    
+                    if(empty($api_error) && $price){ 
+                        // Create a new subscription 
+                        try { 
+                            $subscription = \Stripe\Subscription::create([ 
+                                'customer' => $customer->id, 
+                                'items' => [[ 
+                                    'price' => $price->id, 
+                                ]], 
+                                'payment_behavior' => 'default_incomplete', 
+                                'expand' => ['latest_invoice.payment_intent'], 
+                                'description' => getInvoiceNumber($invoice),
+                            ]); 
+                        }catch(Exception $e) { 
+                            $api_error = $e->getMessage(); 
+                        } 
+                        
+                        if(empty($api_error) && $subscription){ 
+                            $output = [ 
+                                'subscriptionId' => $subscription->id, 
+                                'clientSecret' => $subscription->latest_invoice->payment_intent->client_secret, 
+                                'customerId' => $customer->id 
+                            ]; 
+                            
+                            $invoice->status = 'Paid';
+                            $invoice->save();
+
+                            echo json_encode($output); 
+                        }else{ 
+                            echo json_encode(['error' => $api_error]); 
+                        } 
+                    }else{ 
+                        echo json_encode(['error' => $api_error]); 
+                    } 
+                }else{ 
+                    echo json_encode(['error' => $api_error]); 
+                } 
+            } else {
+                $invoice_due_amount = getInvoiceDueAmount($invoice);
+
+                \Stripe\Stripe::setApiKey($payment_gateway->c1);
+
+                $amount = round($invoice_due_amount * 100);
+                $amount = (int) $amount;
+                $customer = \Stripe\Customer::create([ 
+                    'name' => $name,  
+                    'email' => $email 
+                ]); 
+                $charge = \Stripe\Charge::create([
+                    'amount' => $amount,
+                    'currency' => $payment_gateway->c2,
+                    'description' => getInvoiceNumber($invoice),
+                    'source' => $token,
+                    'capture' => true,
+                ]);    
             }
+            
+            // $token = $_POST['stripeToken'];
+            // $charge = \Stripe\Charge::create([
+            //     'amount' => $amount,
+            //     'currency' => $payment_gateway->c2,
+            //     'description' => getInvoiceNumber($invoice),
+            //     'source' => $token,
+            //     'capture' => true,
+            // ]);
 
-            r2(getInvoicePreviewUrl($invoice), 's', $_L['Payment Successful']);
+            // if (isset($charge->status) && $charge->status == 'succeeded') {
+            //     $invoice->status = 'Paid';
+            //     $invoice->save();
+            // }
+
+            // r2(getInvoicePreviewUrl($invoice), 's', $_L['Payment Successful']);
         }
 
         break;
