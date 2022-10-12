@@ -1267,6 +1267,7 @@ switch ($action) {
                         }
 
                         $ppemail = $p['value'];
+                        
                         //
 
                         $c2 = $p['c2'];
@@ -1274,9 +1275,16 @@ switch ($action) {
                             $amount = $amount / $c2;
                             $amount = round($amount, 2);
                         }
-
-                        $url = 'https://www.paypal.com/cgi-bin/webscr';
-
+                        $live_url = 'https://www.paypal.com/cgi-bin/webscr';
+                        $sandbox_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
+                        $loggedInUserID = !empty($_SESSION['userID'])?$_SESSION['userID']:1; 
+                        $term = $_POST['term'];
+                        if($term == 'monthly') {
+                            $term = 'M';
+                        }elseif($term == 'yearly'){
+                            $term = 'Y';
+                        }
+                        
                         $params = [
                             ['name' => "business", 'value' => $ppemail],
                             [
@@ -1301,17 +1309,24 @@ switch ($action) {
                                 'name' => "item_name",
                                 'value' => "Payment For INV # $invoiceid",
                             ],
-                            ['name' => "amount", 'value' => $amount],
-                            ['name' => "cmd", 'value' => '_xclick'],
-                            ['name' => "no_shipping", 'value' => '1'],
-                            ['name' => "rm", 'value' => '2'],
+                            ['name' => "cmd", 'value' => '_xclick-subscriptions'],
+                            // ['name' => "no_shipping", 'value' => '1'],
+                            // ['name' => "rm", 'value' => '2'],
                             [
                                 'name' => "currency_code",
                                 'value' => $currency_code,
                             ],
+                            // add subscription options.(2022.10.12)
+                            ['name' => "item_number", 'value' => $invoiceid],
+                            ['name' => "custom", 'value' => $loggedInUserID],
+                            ['name' => "a3", 'value' => $amount],
+                            ['name' => "p3", 'value' => 1],
+                            ['name' => "t3", 'value' => $term], //
+                            ['name' => "src", 'value' => 1],
+                            ['name' => "srt", 'value' => 52],
                         ];
 
-                        Fsubmit::form($url, $params);
+                        Fsubmit::form($sandbox_url, $params);
                     } else {
                         echo 'Paypal is Not Found!';
                     }

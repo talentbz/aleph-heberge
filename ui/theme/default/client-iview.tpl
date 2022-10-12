@@ -425,6 +425,7 @@
                                                     </select>
                                                 </div>
                                             {/if}
+                                            <input type="hidden" name="term" value="{$d['term']}">
                                             <div class="form-group">
                                                 <button type="submit" id="btnPayNow" class="btn btn-primary"><i class="fal fa-credit-card"></i> {$_L['Pay Now']}</button>
                                             </div>
