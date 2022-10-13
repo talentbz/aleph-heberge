@@ -955,7 +955,20 @@
                 var stripe = Stripe('{$payment_gateways_by_processor['stripe']['value']}');
                 const subscrFrm = document.querySelector("#payment-form");
                 // Attach an event handler to subscription form
-                subscrFrm.addEventListener("submit", handleSubscrSubmit);
+                subscrFrm.addEventListener("submit", function(e){
+                    e.preventDefault();
+                    setLoading(true);
+                    stripe.createToken(card).then(function(result) {
+                        if (result.error) {
+                            showMessage(result.error.message);
+                            setProcessing(false);
+                            setLoading(false);
+                        } else {
+                            document.getElementById("token_id").setAttribute('value', result.token.id);
+                            handleSubscrSubmit(e);
+                        }
+                    });
+                });
 // Create an instance of Elements.
             var elements = stripe.elements();
 // Custom styling can be passed to options when creating an Element.
@@ -989,19 +1002,8 @@
                     showMessage(event.error.message);
                 }
             }
-            
-            async function handleSubscrSubmit(e) {
+            function handleSubscrSubmit(e) {
                 e.preventDefault();
-                setLoading(true);
-                stripe.createToken(card).then(function(result) {
-                    if (result.error) {
-                        showMessage(result.error.message);
-                        setProcessing(false);
-                        setLoading(false);
-                    } else {
-                        document.getElementById("token_id").setAttribute('value', result.token.id);
-                    }
-                });
                 let customer_name = document.getElementById("name").value;
                 let customer_email = document.getElementById("email").value;
                 let invoice_id = document.getElementById("invoice_id").value;
@@ -1021,6 +1023,12 @@
                 })
                 .then(response => response.json())
                 .then(data => {
+                    // when response is one time
+                    if (data.status){
+                        location.reload();
+                        // paymentIntentProcess(data.clientSecret, data.paymentItentID);
+                    } 
+                    // when response is susbscription
                     if (data.subscriptionId && data.clientSecret) {
                         paymentProcess(data.clientSecret);
                     } else {
@@ -1055,6 +1063,31 @@
                     }
                 });
             }
+
+            // confirm payment Intent
+            // function paymentIntentProcess(clientSecret, paymentItentID){
+            //     setProcessing(true);
+                
+            //     let customer_name = document.getElementById("name").value;
+                
+            //     // Create payment method and confirm payment intent.
+            //     stripe.confirmPaymentIntent(clientSecret, {
+            //         payment_method: {
+            //             card: card,
+            //             billing_details: {
+            //                 name: customer_name
+            //             }
+            //         }
+            //     }).then((result) => {
+            //         if(result.error) {
+            //             showMessage(result.error.message);
+            //             setProcessing(false);
+            //             setLoading(false);
+            //         } else {
+            //             location.reload();
+            //         }
+            //     });
+            // }
             // Display message
             function showMessage(messageText) {
                 const messageContainer = document.querySelector("#paymentResponse");

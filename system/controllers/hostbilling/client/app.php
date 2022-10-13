@@ -1284,48 +1284,83 @@ switch ($action) {
                         }elseif($term == 'yearly'){
                             $term = 'Y';
                         }
-                        
-                        $params = [
-                            ['name' => "business", 'value' => $ppemail],
-                            [
-                                'name' => "return",
-                                'value' =>
-                                    U .
-                                    "client/ipay_submitted/$invoiceid/token_$vtoken/",
-                            ],
-                            [
-                                'name' => "cancel_return",
-                                'value' =>
-                                    U .
-                                    "client/ipay_cancel/$invoiceid/token_$vtoken/",
-                            ],
-                            [
-                                'name' => "notify_url",
-                                'value' =>
-                                    U .
-                                    "client/ipay_ipn/$invoiceid/token_$ptoken/",
-                            ],
-                            [
-                                'name' => "item_name",
-                                'value' => "Payment For INV # $invoiceid",
-                            ],
-                            ['name' => "cmd", 'value' => '_xclick-subscriptions'],
-                            // ['name' => "no_shipping", 'value' => '1'],
-                            // ['name' => "rm", 'value' => '2'],
-                            [
-                                'name' => "currency_code",
-                                'value' => $currency_code,
-                            ],
-                            // add subscription options.(2022.10.12)
-                            ['name' => "item_number", 'value' => $invoiceid],
-                            ['name' => "custom", 'value' => $loggedInUserID],
-                            ['name' => "a3", 'value' => $amount],
-                            ['name' => "p3", 'value' => 1],
-                            ['name' => "t3", 'value' => $term], //
-                            ['name' => "src", 'value' => 1],
-                            ['name' => "srt", 'value' => 52],
-                        ];
 
+                        if($term == 'one_time'){
+                            $params = [
+                                ['name' => "business", 'value' => $ppemail],
+                                [
+                                    'name' => "return",
+                                    'value' =>
+                                        U .
+                                        "client/ipay_submitted/$invoiceid/token_$vtoken/",
+                                ],
+                                [
+                                    'name' => "cancel_return",
+                                    'value' =>
+                                        U .
+                                        "client/ipay_cancel/$invoiceid/token_$vtoken/",
+                                ],
+                                [
+                                    'name' => "notify_url",
+                                    'value' =>
+                                        U .
+                                        "client/ipay_ipn/$invoiceid/token_$ptoken/",
+                                ],
+                                [
+                                    'name' => "item_name",
+                                    'value' => "Payment For INV # $invoiceid",
+                                ],
+                                ['name' => "amount", 'value' => $amount],
+                                ['name' => "cmd", 'value' => '_xclick'],
+                                ['name' => "no_shipping", 'value' => '1'],
+                                ['name' => "rm", 'value' => '2'],
+                                [
+                                    'name' => "currency_code",
+                                    'value' => $currency_code,
+                                ],
+                            ];
+                        } else {
+                            $params = [
+                                ['name' => "business", 'value' => $ppemail],
+                                [
+                                    'name' => "return",
+                                    'value' =>
+                                        U .
+                                        "client/ipay_submitted/$invoiceid/token_$vtoken/",
+                                ],
+                                [
+                                    'name' => "cancel_return",
+                                    'value' =>
+                                        U .
+                                        "client/ipay_cancel/$invoiceid/token_$vtoken/",
+                                ],
+                                [
+                                    'name' => "notify_url",
+                                    'value' =>
+                                        U .
+                                        "client/ipay_ipn/$invoiceid/token_$ptoken/",
+                                ],
+                                [
+                                    'name' => "item_name",
+                                    'value' => "Payment For INV # $invoiceid",
+                                ],
+                                ['name' => "cmd", 'value' => '_xclick-subscriptions'],
+                                // ['name' => "no_shipping", 'value' => '1'],
+                                // ['name' => "rm", 'value' => '2'],
+                                [
+                                    'name' => "currency_code",
+                                    'value' => $currency_code,
+                                ],
+                                // add subscription options.(2022.10.12)
+                                ['name' => "item_number", 'value' => $invoiceid],
+                                ['name' => "custom", 'value' => $loggedInUserID],
+                                ['name' => "a3", 'value' => $amount],
+                                ['name' => "p3", 'value' => 1],
+                                ['name' => "t3", 'value' => $term], //
+                                ['name' => "src", 'value' => 1],
+                                ['name' => "srt", 'value' => 52],
+                            ];
+                        }
                         Fsubmit::form($sandbox_url, $params);
                     } else {
                         echo 'Paypal is Not Found!';
@@ -4937,25 +4972,24 @@ vMax: \'9999999999999999.00\',
         
         if ($invoice && $payment_gateway) {
             // Get client
+            $contact = Contact::find($invoice->userid);
 
+            $invoice_due_amount = getInvoiceDueAmount($invoice);
+
+            $stripe = \Stripe\Stripe::setApiKey($payment_gateway->c1);
+
+            $amount = round($invoice_due_amount * 100);
+            $amount = (int) $amount;
+            try {   
+                $customer = \Stripe\Customer::create([ 
+                    'name' => $name,  
+                    'email' => $email 
+                ]);  
+            }catch(Exception $e) {   
+                $api_error = $e->getMessage();   
+            }
+            
             if($planInterval != 'one_time'){
-                $contact = Contact::find($invoice->userid);
-
-                $invoice_due_amount = getInvoiceDueAmount($invoice);
-
-                \Stripe\Stripe::setApiKey($payment_gateway->c1);
-
-                $amount = round($invoice_due_amount * 100);
-                $amount = (int) $amount;
-
-                try {   
-                    $customer = \Stripe\Customer::create([ 
-                        'name' => $name,  
-                        'email' => $email 
-                    ]);  
-                }catch(Exception $e) {   
-                    $api_error = $e->getMessage();   
-                }
 
                 if(empty($api_error) && $customer){ 
                     try { 
@@ -5007,40 +5041,38 @@ vMax: \'9999999999999999.00\',
                     echo json_encode(['error' => $api_error]); 
                 } 
             } else {
-                $invoice_due_amount = getInvoiceDueAmount($invoice);
-
-                \Stripe\Stripe::setApiKey($payment_gateway->c1);
-
-                $amount = round($invoice_due_amount * 100);
-                $amount = (int) $amount;
-                $customer = \Stripe\Customer::create([ 
-                    'name' => $name,  
-                    'email' => $email 
-                ]); 
+                // $stripe 
                 $charge = \Stripe\Charge::create([
                     'amount' => $amount,
                     'currency' => $payment_gateway->c2,
                     'description' => getInvoiceNumber($invoice),
                     'source' => $token,
                     'capture' => true,
+                    // 'customer' => $customer->id,
                 ]);    
-            }
-            
-            // $token = $_POST['stripeToken'];
-            // $charge = \Stripe\Charge::create([
-            //     'amount' => $amount,
-            //     'currency' => $payment_gateway->c2,
-            //     'description' => getInvoiceNumber($invoice),
-            //     'source' => $token,
-            //     'capture' => true,
-            // ]);
 
-            // if (isset($charge->status) && $charge->status == 'succeeded') {
-            //     $invoice->status = 'Paid';
-            //     $invoice->save();
-            // }
+                // $paymentItent = \Stripe\PaymentIntent::create([
+                //     'amount' => $amount,
+                //     'currency' => $payment_gateway->c2,
+                //     'payment_method_types' => ['card'],
+                //     // 'confirm' => true,
+                //     'customer' => $customer->id,
+                // ]);
 
-            // r2(getInvoicePreviewUrl($invoice), 's', $_L['Payment Successful']);
+
+                if ($charge) {
+
+                    $output = [ 
+                        'status' => 'success',
+                        // 'clientSecret' => $paymentItent->client_secret,
+                        // 'paymentItentID' => $paymentItent->id,
+                    ]; 
+                    $invoice->status = 'Paid';
+                    $invoice->save();
+                    echo json_encode($output); 
+                }
+                // r2(getInvoicePreviewUrl($invoice), 's', $_L['Payment Successful']);
+            }            
         }
 
         break;
