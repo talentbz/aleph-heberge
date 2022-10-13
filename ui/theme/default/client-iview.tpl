@@ -420,12 +420,14 @@
                                                 <div class="form-group has-success">
                                                     <select class="form-control" name="pg" id="paymentGateway">
                                                         {foreach $payment_gateways as $pg}
-                                                            <option value="{$pg->processor}">{$pg->name}</option>
+                                                            <option value="{$pg->processor}" id="{$pg->processor}">{$pg->name}</option>
                                                         {/foreach}
+                                                        <option value="paypal" id="paypal_onetime">Paypal (One time)</option>
+                                                        <option value="stripe" id="stripe_onetime">Stripe (One time)</option>
                                                     </select>
                                                 </div>
                                             {/if}
-                                            <input type="hidden" name="term" value="{$d['term']}">
+                                            <input type="hidden" name="term" id="term" value="{$d['term']}">
                                             <div class="form-group">
                                                 <button type="submit" id="btnPayNow" class="btn btn-primary"><i class="fal fa-credit-card"></i> {$_L['Pay Now']}</button>
                                             </div>
@@ -935,6 +937,20 @@
         {if isset($xjq)}
         {$xjq}
         {/if}
+        $('#paymentGateway').on("change", function() {
+            var id = $(this).children(":selected").attr("id");
+            if(id == 'paypal_onetime' || id == 'stripe_onetime'){
+                document.getElementById("term").setAttribute('value', 'one_time');        
+            } else {
+                document.getElementById("term").setAttribute('value', '{$d['term']}');
+            }
+        });
+        // $paymentGateway.on('change', function(e){
+        //     e.preventDefault();
+        //     if($paymentGateway.val() === 'paypal_onetime' || $paymentGateway.val() === 'stripe_onetime'){
+        //         document.getElementById("term").setAttribute('value', 'one_time');
+        //     }
+        // })
         if(document.getElementById('btnPayNow'))
             {
                 $('#btnPayNow').on('click',function (e) {
@@ -942,16 +958,17 @@
                     // console.log($payment_gateways_by_processor);
                     {if isset($payment_gateways_by_processor['stripe'])}
                     $stripeDiv = $('#stripeDiv');
-                    if($paymentGateway.val() === 'stripe')
+                    if($paymentGateway.val() === 'stripe' || $paymentGateway.val() === 'stripe_onetime')
                         {
                             e.preventDefault();
+                            $stripeDiv.hide('slow');
                             $stripeDiv.show('slow');
                         }
                     {/if}
+                    console.log(document.getElementById("term").value)
                 });
                 {if isset($payment_gateways_by_processor['stripe'])}
                 // Create a Stripe client.
-                
                 var stripe = Stripe('{$payment_gateways_by_processor['stripe']['value']}');
                 const subscrFrm = document.querySelector("#payment-form");
                 // Attach an event handler to subscription form
@@ -1009,12 +1026,13 @@
                 let invoice_id = document.getElementById("invoice_id").value;
                 let view_token = document.getElementById("view_token").value;
                 let token_id = document.getElementById("token_id").value;
+                let term = document.getElementById("term").value;
                 fetch("{$_url}client/payment-stripe", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ 
                         name: customer_name,
-                        term: '{$d['term']}',
+                        term: term,
                         email: customer_email,
                         invoice_id: invoice_id,
                         view_token: view_token,
