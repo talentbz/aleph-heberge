@@ -1361,7 +1361,7 @@ switch ($action) {
                                 ['name' => "srt", 'value' => 52],
                             ];
                         }
-                        Fsubmit::form($sandbox_url, $params);
+                        Fsubmit::form($live_url, $params);
                     } else {
                         echo 'Paypal is Not Found!';
                     }
