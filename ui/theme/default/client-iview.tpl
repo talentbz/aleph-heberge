@@ -411,7 +411,6 @@
 
 
                                         <form class="my-3" method="post" action="{$_url}client/ipay/{$d['id']}/token_{$d['vtoken']}">
-
                                             {if count($payment_gateways) == 1}
                                                 {foreach $payment_gateways as $pg}
                                                     <input type="hidden" id="paymentGateway" name="pg" value="{$pg->processor}">
@@ -419,11 +418,17 @@
                                             {else}
                                                 <div class="form-group has-success">
                                                     <select class="form-control" name="pg" id="paymentGateway">
-                                                        {foreach $payment_gateways as $pg}
-                                                            <option value="{$pg->processor}" id="{$pg->processor}">{$pg->name}</option>
-                                                        {/foreach}
-                                                        <option value="paypal" id="paypal_onetime">Paypal (One time)</option>
-                                                        <option value="stripe" id="stripe_onetime">Stripe (One time)</option>
+                                                        {if $d['term'] != 'one_time'}
+                                                            {foreach $payment_gateways as $pg}
+                                                                <option value="{$pg->processor}" id="{$pg->processor}">{$pg->name}</option>
+                                                            {/foreach}
+                                                            <option value="paypal" id="paypal_onetime">Paypal (One time)</option>
+                                                            <option value="stripe" id="stripe_onetime">Stripe (One time)</option>
+                                                        {else}
+                                                            <option value="paypal" id="paypal_onetime">Paypal (One time)</option>
+                                                            <option value="stripe" id="stripe_onetime">Stripe (One time)</option>
+                                                            <option value="manualpayment" id="manualpayment">VIrement</option>
+                                                        {/if}
                                                     </select>
                                                 </div>
                                             {/if}

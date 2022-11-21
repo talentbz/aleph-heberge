@@ -241,6 +241,7 @@
                         <label for="first">{__('Billing Cycle')}</label>
                         <select class="select_payment_term" data-id="{$item->id}" id="term_{$item->id}" >
                             {foreach get_available_item_pricing_terms($item) as $key => $value}
+                            {$value}
                                 <option value="{$value['price']}"
                                         {if isset($shopping_cart_items['hosting'][$item->id]['term']) && ($shopping_cart_items['hosting'][$item->id]['term'] === $key)}
                                             selected

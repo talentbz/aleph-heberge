@@ -986,7 +986,6 @@ switch ($action) {
                 $format_currency_override['precision'] =
                     $config['decimal_places_products_and_services'];
             }
-            
             view('client-iview', [
                 'company' => $company,
                 'quote' => $quote,
